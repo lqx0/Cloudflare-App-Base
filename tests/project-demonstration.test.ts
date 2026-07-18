@@ -8,4 +8,5 @@ test("homepage links safely to the SJS demonstration brief", async () => {
   assert.match(page, /target="_blank"/);
   assert.match(page, /rel="noreferrer"/);
   assert.match(page, /lqixv@hotmail\.com/);
+  assert.match(page, /developer domain: fitoa\.net/);
 });

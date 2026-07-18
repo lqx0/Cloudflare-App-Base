@@ -57,6 +57,7 @@ export function PublicHome() {
         <p className="mt-3">Built as a website-development demonstration for Ankit Kumar, covering Cloudflare hosting, SEO tagging, account signup, domain-email preparation, and future content expansion.</p>
         <p className="mt-3">Cloudflare-Ankit means a Cloudflare-deployable website developed for Ankit Kumar. Developer: Tom Lin · <a className="underline" href="mailto:lqixv@hotmail.com">lqixv@hotmail.com</a></p>
         <p className="mt-3">Final business content, domain, and email configuration remain for Ankit Kumar to confirm.</p>
+        <p className="mt-3">Because the client domain is not yet confirmed, this demonstration uses the developer domain: fitoa.net.</p>
         <a className="mt-4 inline-block underline" href="https://www.sjs.co.nz/job-details/27276/website-developer-7842" target="_blank" rel="noreferrer">View the SJS Website Developer brief</a>
       </section>
     </section>
