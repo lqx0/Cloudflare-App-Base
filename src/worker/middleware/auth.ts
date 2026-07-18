@@ -6,6 +6,7 @@ import type { Database } from "../types/database";
 import type { AppContext, AppUser } from "../types/context";
 import { createEmailSender, type EmailSender } from "../utils/email";
 import { getVerificationEmailTemplate, getPasswordResetEmailTemplate } from "../utils/email-templates";
+import { hasGoogleOAuthCredentials } from "../utils/google-oauth";
 import { config } from "../../config";
 
 type Environment = "local" | "preview" | "production" | "test";
@@ -30,7 +31,7 @@ function isEnabled(value?: string): boolean {
 }
 
 export function isGoogleOAuthEnabled(env: { GOOGLE_CLIENT_ID?: string; GOOGLE_CLIENT_SECRET?: string }): boolean {
-	return Boolean(config.auth.enableGoogleAuth && env.GOOGLE_CLIENT_ID && env.GOOGLE_CLIENT_SECRET);
+	return config.auth.enableGoogleAuth && hasGoogleOAuthCredentials(env);
 }
 
 function shouldUseAuthEmails(
