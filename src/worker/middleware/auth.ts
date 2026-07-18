@@ -85,6 +85,7 @@ export function createAuth(c: AppContext) {
 	const googleOAuthEnabled = isGoogleOAuthEnabled(c.env);
 
 	return betterAuth({
+		secret: c.env.BETTER_AUTH_SECRET,
 		database: {
 			db,
 			type: "sqlite",

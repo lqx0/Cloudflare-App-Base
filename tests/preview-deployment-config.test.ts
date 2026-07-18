@@ -17,3 +17,23 @@ test("environment build runner selects the Windows npx executable when necessary
 	assert.match(buildScript, /process\.platform === "win32" \? "npx\.cmd" : "npx"/);
 	assert.match(buildScript, /shell: process\.platform === "win32"/);
 });
+
+test("remote tooling invokes the repository-pinned Wrangler executable", async () => {
+	const [secretSync, databaseCli] = await Promise.all([
+		readFile("bin/sync-secrets.ts", "utf8"),
+		readFile("bin/db.ts", "utf8"),
+	]);
+
+	assert.match(secretSync, /node_modules", "wrangler", "bin", "wrangler\.js/);
+	assert.match(databaseCli, /node_modules", "wrangler", "bin", "wrangler\.js/);
+});
+
+test("worker authentication reads an explicit Better Auth secret binding", async () => {
+	const [authMiddleware, environmentTypes] = await Promise.all([
+		readFile("src/worker/middleware/auth.ts", "utf8"),
+		readFile("src/worker/types/env.ts", "utf8"),
+	]);
+
+	assert.match(authMiddleware, /secret: c\.env\.BETTER_AUTH_SECRET/);
+	assert.match(environmentTypes, /BETTER_AUTH_SECRET\?: string/);
+});

@@ -61,7 +61,8 @@ function getRemoteFlags(env: DbEnvironment): string[] {
 }
 
 function runWrangler(args: string[]): void {
-	execFileSync("wrangler", args, {
+	const wranglerCliPath = resolve(process.cwd(), "node_modules", "wrangler", "bin", "wrangler.js");
+	execFileSync(process.execPath, [wranglerCliPath, ...args], {
 		stdio: "inherit",
 		env: process.env,
 		timeout: commandTimeoutMs,

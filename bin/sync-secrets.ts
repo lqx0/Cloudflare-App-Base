@@ -20,6 +20,7 @@ import { existsSync, readFileSync, writeFileSync, mkdirSync } from "fs";
 import { join } from "path";
 
 const HASH_DIR = ".wrangler/secrets";
+const WRANGLER_CLI_PATH = join(process.cwd(), "node_modules", "wrangler", "bin", "wrangler.js");
 const NON_SECRET_KEYS = new Set([
 	"ENVIRONMENT",
 	"EMAIL_PROVIDER",
@@ -93,7 +94,7 @@ function syncSecret(key: string, value: string, env: string): boolean {
 	// backticks, quotes or newlines are passed verbatim and not interpreted by
 	// the shell. Capture stderr so the real wrangler error is surfaced on
 	// failure instead of being silently dropped.
-	const result = spawnSync("wrangler", ["secret", "put", key, "--env", env], {
+	const result = spawnSync(process.execPath, [WRANGLER_CLI_PATH, "secret", "put", key, "--env", env], {
 		input: value,
 		encoding: "utf-8",
 		stdio: ["pipe", "pipe", "pipe"],

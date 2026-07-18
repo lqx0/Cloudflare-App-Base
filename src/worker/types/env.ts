@@ -19,6 +19,7 @@ export type AppEnv = {
 	// Public base URL of the app (used by Better Auth for session/OAuth/email links).
 	// Optional — falls back to sensible defaults per environment.
 	APP_BASE_URL?: string;
+	BETTER_AUTH_SECRET?: string;
 	// Google OAuth credentials (optional)
 	GOOGLE_CLIENT_ID?: string;
 	GOOGLE_CLIENT_SECRET?: string;
