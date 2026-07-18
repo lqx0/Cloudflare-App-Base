@@ -14,6 +14,8 @@ export type AppEnv = {
 	ENVIRONMENT?: string;
 	EMAIL_PROVIDER?: EmailProvider;
 	EMAIL_API_KEY?: string;
+	// Explicitly enable or disable verification and password-reset emails for an environment.
+	AUTH_EMAILS_ENABLED?: string;
 	AUTH_EMAILS_LOCAL_ENABLED?: string;
 	SEND_EMAIL?: CloudflareEmailSendBinding;
 	// Public base URL of the app (used by Better Auth for session/OAuth/email links).

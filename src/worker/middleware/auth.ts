@@ -33,7 +33,14 @@ export function isGoogleOAuthEnabled(env: { GOOGLE_CLIENT_ID?: string; GOOGLE_CL
 	return Boolean(config.auth.enableGoogleAuth && env.GOOGLE_CLIENT_ID && env.GOOGLE_CLIENT_SECRET);
 }
 
-function shouldUseAuthEmails(environment: Environment, env: { AUTH_EMAILS_LOCAL_ENABLED?: string }): boolean {
+function shouldUseAuthEmails(
+	environment: Environment,
+	env: { AUTH_EMAILS_ENABLED?: string; AUTH_EMAILS_LOCAL_ENABLED?: string },
+): boolean {
+	if (env.AUTH_EMAILS_ENABLED !== undefined) {
+		return isEnabled(env.AUTH_EMAILS_ENABLED);
+	}
+
 	return environment !== "local" || isEnabled(env.AUTH_EMAILS_LOCAL_ENABLED);
 }
 
@@ -67,6 +74,7 @@ export function createAuth(c: AppContext) {
 	});
 
 	const authEmailsEnabled = shouldUseAuthEmails(environment, {
+		AUTH_EMAILS_ENABLED: c.env.AUTH_EMAILS_ENABLED,
 		AUTH_EMAILS_LOCAL_ENABLED: c.env.AUTH_EMAILS_LOCAL_ENABLED,
 	});
 	const emailSender = getAuthEmailSender(c, environment, authEmailsEnabled);

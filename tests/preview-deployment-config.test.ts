@@ -11,6 +11,25 @@ test("preview deployment builds with the Cloudflare preview environment and depl
 	assert.match(packageJson.scripts["deploy:preview"], /wrangler deploy --env preview/);
 });
 
+test("preview configuration uses the deployed workers.dev origin for Better Auth", async () => {
+	const wranglerConfig = await readFile("wrangler.toml", "utf8");
+
+	assert.match(
+		wranglerConfig,
+		/\[env\.preview\.vars\][\s\S]*APP_BASE_URL\s*=\s*"https:\/\/cloudflare-ankit-preview\.lqixv\.workers\.dev"/,
+	);
+});
+
+test("preview disables email verification until a usable mail sender is configured", async () => {
+	const [wranglerConfig, authMiddleware] = await Promise.all([
+		readFile("wrangler.toml", "utf8"),
+		readFile("src/worker/middleware/auth.ts", "utf8"),
+	]);
+
+	assert.match(wranglerConfig, /\[env\.preview\.vars\][\s\S]*AUTH_EMAILS_ENABLED\s*=\s*"false"/);
+	assert.match(authMiddleware, /AUTH_EMAILS_ENABLED/);
+});
+
 test("environment build runner selects the Windows npx executable when necessary", async () => {
 	const buildScript = await readFile("bin/build.ts", "utf8");
 
