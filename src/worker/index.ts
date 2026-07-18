@@ -6,8 +6,10 @@ import bcrypt from "bcryptjs";
 import type { Database } from "./types/database";
 import type { AppBindings, AppContext } from "./types/context";
 import { authMiddleware, handleAuthRequest, isGoogleOAuthEnabled } from "./middleware/auth";
+import { securityHeaders } from "./middleware/security";
 
 const app = new Hono<AppBindings>();
+app.use("*", securityHeaders);
 
 const requireDb = (c: AppContext) => {
 	if (!c.env.DB) {
