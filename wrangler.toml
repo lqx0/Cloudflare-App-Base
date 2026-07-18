@@ -29,14 +29,16 @@ database_name = "cloudflare-ankit"
 database_id = "local"
 
 [env.preview]
+workers_dev = true
 [env.preview.vars]
 ENVIRONMENT = "preview"
 EMAIL_PROVIDER = "cloudflare"
+AUTH_EMAILS_LOCAL_ENABLED = "false"
 
 [[env.preview.d1_databases]]
 binding = "DB"
 database_name = "cloudflare-ankit-preview"
-database_id = "YOUR_PREVIEW_D1_DATABASE_ID"
+database_id = "4be0bafc-31d0-4892-985c-a96d6207db4e"
 
 [[env.preview.send_email]]
 name = "SEND_EMAIL"
