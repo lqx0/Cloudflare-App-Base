@@ -6,4 +6,6 @@
 
 卡片包含 Cloudflare-Ankit 的命名含义、开发者 Tom Lin 和 `lqixv@hotmail.com`，并注明最终业务内容、域名和邮箱配置仍由 Ankit Kumar 确认。
 
+卡片提供可点击的 SJS 职位链接 `https://www.sjs.co.nz/job-details/27276/website-developer-7842`，在新标签页打开，并使用 `rel="noreferrer"`。
+
 保持现有公开首页样式与响应式布局；添加聚焦测试并在验证后独立本地提交。

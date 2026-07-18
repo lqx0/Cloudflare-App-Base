@@ -6,4 +6,6 @@ The card describes Cloudflare free hosting, a static public website, SEO tagging
 
 It explains the Cloudflare-Ankit name, identifies developer Tom Lin and `lqixv@hotmail.com`, and states that final business content, domain, and email configuration remain for Ankit Kumar to confirm.
 
+The card includes a clickable SJS brief link to `https://www.sjs.co.nz/job-details/27276/website-developer-7842`; it opens in a new tab using `rel="noreferrer"`.
+
 Retain the existing public homepage style and responsive layout; add a focused test and create an independent local commit after verification.
