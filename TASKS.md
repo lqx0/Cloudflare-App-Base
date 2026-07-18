@@ -85,14 +85,14 @@ Stop after Milestone 1 and report results.
 
 ## Milestone 6 — Quality and security
 
-- [ ] Review auth error handling.
-- [ ] Review security headers and CSP.
-- [ ] Review logs for personal data.
-- [ ] Review CLI endpoint protection.
-- [ ] Review `.gitignore` and secret files.
-- [ ] Review dependency advisories.
-- [ ] Add focused tests for changed behavior.
-- [ ] Check accessibility and responsiveness.
+- [x] Review auth error handling.
+- [x] Review security headers and CSP.
+- [x] Review logs for personal data.
+- [x] Review CLI endpoint protection.
+- [x] Review `.gitignore` and secret files.
+- [x] Review dependency advisories.
+- [x] Add focused tests for changed behavior.
+- [x] Check accessibility and responsiveness.
 
 ## Later milestones — approval required
 
