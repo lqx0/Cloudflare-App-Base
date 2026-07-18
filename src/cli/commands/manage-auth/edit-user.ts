@@ -1,0 +1,77 @@
+import { Command } from "commander";
+import { connectToDatabase, normalizeEnvironment } from "../../utils/db";
+import { printError, printSuccess, printWarning } from "../../utils/output";
+
+type EnvironmentOption = "local" | "preview" | "production";
+
+type EditUserOptions = {
+	user: string;
+	name?: string;
+	email?: string;
+	pass?: string;
+	role?: "user" | "admin";
+	env?: EnvironmentOption;
+};
+
+type UpdateData = {
+	name?: string;
+	email?: string;
+	password?: string;
+	role?: "user" | "admin";
+};
+
+export function createEditUserCommand(): Command {
+	const command = new Command("edit-user");
+
+	command
+		.description("Edit user information (name, email, password, role)")
+		.requiredOption("-u, --user <email>", "Current user email address")
+		.option("-n, --name <name>", "New display name")
+		.option("-e, --email <email>", "New email address")
+		.option("-p, --pass <password>", "New password (plain text)")
+		.option("-r, --role <role>", "New role: user | admin")
+		.argument("[environment]", "Target environment (local, preview, production)")
+		.option("--env <environment>", "Target environment (local, preview, production)")
+		.action(async (environment: string | undefined, options: EditUserOptions) => {
+			try {
+				const { user: currentEmail, name, email: newEmail, pass: password, role } = options;
+				const allowedRoles = ["user", "admin"] as const;
+				const env = normalizeEnvironment(options.env, environment);
+				if (!name && !newEmail && !password && !role) {
+					printError("Must specify at least one field to update (--name, --email, --pass, or --role)");
+					process.exit(1);
+				}
+				if (role && !allowedRoles.includes(role)) {
+					throw new Error(`Invalid role '${role}'. Allowed: ${allowedRoles.join(", ")}`);
+				}
+
+				const db = await connectToDatabase(env);
+
+				if (password && password.length < 8) {
+					printWarning("Password is shorter than 8 characters.");
+				}
+
+				const updateData: UpdateData = {};
+				if (name !== undefined) updateData.name = name;
+				if (newEmail) updateData.email = newEmail;
+				if (password) updateData.password = password;
+				if (role) updateData.role = role;
+
+				await db.editUser(currentEmail, updateData);
+
+				const changes = [];
+				if (name !== undefined) changes.push("name");
+				if (newEmail) changes.push("email");
+				if (password) changes.push("password");
+				if (role) changes.push("role");
+
+				printSuccess(`User '${currentEmail}' updated successfully (${changes.join(", ")})`);
+			} catch (error: unknown) {
+				const message = error instanceof Error ? error.message : "Unknown error";
+				printError(`Failed to edit user: ${message}`);
+				process.exit(1);
+			}
+		});
+
+	return command;
+}
