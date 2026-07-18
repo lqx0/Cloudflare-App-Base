@@ -96,10 +96,16 @@
 
 ## 后续里程碑 — 需要批准
 
-- Google OAuth 远程配置
-- Cloudflare Preview
-- Production 和 `fitoa.net`
-- 域名邮箱
+以下事项已提升为下一阶段最高优先级。完整本地准备见 `docs/REMOTE_READINESS.zh-CN.md`；在针对目标环境的明确授权前，均不得执行远程操作。
+
+- [!] 优先级 1：Google OAuth 凭据与远端启用（等待 Google Cloud 项目、回调 URI、凭据安全交付和环境级授权）。
+- [!] 优先级 2：域名、邮箱、Preview/Production 配置或部署（等待规范域名、Production D1、邮箱方案及每项远程操作的授权）。
+
+仍需单独批准：
+
+- 创建 Google OAuth Client
+- Cloudflare Preview 或 Production 部署
+- 域名/DNS/Email Routing/Email Sending 配置
 - 任何付费或破坏性操作
 
 ## 第二阶段待办

@@ -96,10 +96,16 @@ Stop after Milestone 1 and report results.
 
 ## Later milestones — approval required
 
-- Google OAuth remote configuration
-- Cloudflare preview deployment
-- Production deployment and `fitoa.net`
-- Domain email configuration
+The following work is now the highest priority for the next phase. Full local readiness is recorded in `docs/REMOTE_READINESS.md`; none of it permits a remote operation until the target environment has explicit approval.
+
+- [!] Priority 1: Google OAuth credentials and remote enablement (awaiting Google Cloud project, redirect URIs, secure credential delivery, and environment-level authorization).
+- [!] Priority 2: domain, email, Preview/Production configuration, or deployment (awaiting canonical domain, Production D1, email approach, and authorization for each remote operation).
+
+Still requiring separate approval:
+
+- Creating a Google OAuth client
+- Cloudflare Preview or Production deployment
+- Domain/DNS/Email Routing/Email Sending configuration
 - Any paid or destructive operation
 
 ## Phase 2 backlog
