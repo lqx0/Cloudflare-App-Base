@@ -151,7 +151,7 @@ export function ForgotPassword() {
 				<CardFooter className="flex justify-center">
 					<p className="text-sm text-muted-foreground">
 						Remembered your password?{"  "}
-						<Link to="/" className="text-primary hover:underline">
+						<Link to="/login" className="text-primary hover:underline">
 							Sign in
 						</Link>
 					</p>

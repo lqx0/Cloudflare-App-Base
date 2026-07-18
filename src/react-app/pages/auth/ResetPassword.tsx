@@ -88,7 +88,7 @@ export function ResetPassword() {
 				
 				// Fallback: show success and redirect to login
 				setSuccess(true);
-				setTimeout(() => navigate("/"), 3000);
+				setTimeout(() => navigate("/login"), 3000);
 			}
 		} catch (err) {
 			const e = err as Error;
@@ -264,7 +264,7 @@ export function ResetPassword() {
 					</form>
 				</CardContent>
 				<CardFooter className="flex justify-center">
-					<Link to="/" className="text-sm text-primary hover:underline">
+					<Link to="/login" className="text-sm text-primary hover:underline">
 						Back to sign in
 					</Link>
 				</CardFooter>
