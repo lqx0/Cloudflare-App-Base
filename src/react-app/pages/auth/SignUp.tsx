@@ -97,9 +97,7 @@ export function SignUp() {
 
 	if (pendingVerification) {
 		return (
-			<div className="min-h-screen flex flex-col items-center py-4 px-4">
-				<div className="fixed inset-0 bg-linear-to-br from-slate-50 to-slate-100 dark:from-slate-950 dark:to-slate-900 -z-10" />
-
+			<div className="flex w-full flex-1 items-center justify-center px-4 py-8">
 				<Card className="relative w-full max-w-md shadow-2xl my-auto">
 					<CardHeader className="space-y-6">
 						<div className="flex justify-center">
@@ -134,9 +132,7 @@ export function SignUp() {
 	}
 
 	return (
-		<div className="min-h-screen flex flex-col items-center py-4 px-4">
-			<div className="fixed inset-0 bg-linear-to-br from-slate-50 to-slate-100 dark:from-slate-950 dark:to-slate-900 -z-10" />
-
+		<div className="flex w-full flex-1 items-center justify-center px-4 py-8">
 			<Card className="relative w-full max-w-md shadow-2xl my-auto">
 				<CardHeader className="space-y-6">
 					<div className="flex justify-center">

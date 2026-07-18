@@ -100,8 +100,8 @@ export function Profile() {
 	}
 
 	return (
-		<div className="h-full bg-slate-50 dark:bg-slate-950 overflow-auto">
-			<div className="px-4 py-8 max-w-7xl mx-auto">
+		<section className="mx-auto w-full max-w-6xl px-6 py-10">
+			<div>
 				<div className="space-y-6">
 					{/* Header */}
 					<div>
@@ -226,6 +226,6 @@ export function Profile() {
 					</div>
 				</div>
 			</div>
-		</div>
+		</section>
 	);
 }

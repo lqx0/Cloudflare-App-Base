@@ -8,8 +8,9 @@ test("successful sign-up navigates to the profile settings page", async () => {
 	assert.match(signUp, /navigate\("\/profile"\)/);
 });
 
-test("the authenticated homepage uses the existing account top bar", async () => {
+test("the homepage uses the shared site layout for every session state", async () => {
 	const app = await readFile("src/react-app/App.tsx", "utf8");
 
-	assert.match(app, /path="\/"[\s\S]*shouldShowTopBar[\s\S]*<TopBar>[\s\S]*<PublicHome \/>[\s\S]*<\/TopBar>/);
+	assert.match(app, /path="\/"[\s\S]*<SiteLayout><PublicHome \/><\/SiteLayout>/);
+	assert.doesNotMatch(app, /shouldShowTopBar|<TopBar>/);
 });

@@ -36,15 +36,12 @@ function LegalSample({ sections }: { sections: typeof privacySections }) {
 
 export function PublicHome() {
   return (
-    <section className="mx-auto max-w-4xl px-6 py-24">
+    <Page title="A simple, secure starting point.">
       <p className="text-sm font-medium text-primary">Cloudflare-Ankit</p>
-      <h1 className="mt-3 text-5xl font-bold tracking-tight">
-        A simple, secure starting point.
-      </h1>
-      <p className="mt-6 max-w-2xl text-lg text-muted-foreground">
+      <p className="text-lg">
         This provisional site will evolve with confirmed client requirements.
       </p>
-      <div className="mt-8 flex gap-3">
+      <div className="flex gap-3 pt-2">
         <Button asChild>
           <Link to="/services">Explore services</Link>
         </Button>
@@ -61,7 +58,7 @@ export function PublicHome() {
         <p className="mt-3">Because the client domain is not yet confirmed, this demonstration uses the <strong className="font-semibold text-foreground">developer domain: fitoa.net</strong>.</p>
         <a className="mt-5 inline-flex rounded-md bg-primary px-4 py-2 font-semibold text-primary-foreground" href="https://www.sjs.co.nz/job-details/27276/website-developer-7842" target="_blank" rel="noreferrer">View the SJS Website Developer brief</a>
       </section>
-    </section>
+    </Page>
   );
 }
 
