@@ -8,6 +8,7 @@ import { Alert, AlertDescription } from "../ui/alert";
 import { Eye, EyeOff } from "lucide-react";
 import { GoogleSignInButton } from "./GoogleSignInButton";
 import { config } from "../../../config";
+import { useGoogleAuthAvailable } from "@/hooks/use-auth-capabilities";
 
 interface LoginFormProps {
 	onSuccess?: () => void;
@@ -15,6 +16,7 @@ interface LoginFormProps {
 }
 
 export function LoginForm({ onSuccess, showSignupLink = true }: LoginFormProps) {
+	const googleAuthAvailable = useGoogleAuthAvailable();
 	const navigate = useNavigate();
 	const [email, setEmail] = useState("");
 	const [password, setPassword] = useState("");
@@ -148,7 +150,7 @@ export function LoginForm({ onSuccess, showSignupLink = true }: LoginFormProps) 
 				</Button>
 			</div>
 
-			{config.auth.enableGoogleAuth && (
+			{config.auth.enableGoogleAuth && googleAuthAvailable && (
 				<>
 					<div className="relative my-4">
 						<div className="absolute inset-0 flex items-center">

@@ -29,6 +29,10 @@ function isEnabled(value?: string): boolean {
 	return value === "true" || value === "1";
 }
 
+export function isGoogleOAuthEnabled(env: { GOOGLE_CLIENT_ID?: string; GOOGLE_CLIENT_SECRET?: string }): boolean {
+	return Boolean(config.auth.enableGoogleAuth && env.GOOGLE_CLIENT_ID && env.GOOGLE_CLIENT_SECRET);
+}
+
 function shouldUseAuthEmails(environment: Environment, env: { AUTH_EMAILS_LOCAL_ENABLED?: string }): boolean {
 	return environment !== "local" || isEnabled(env.AUTH_EMAILS_LOCAL_ENABLED);
 }
@@ -78,7 +82,7 @@ export function createAuth(c: AppContext) {
 	const shouldRequireEmailVerification = authEmailsEnabled && !!emailSender;
 
 	// Configure Google OAuth if credentials are provided and enabled in config
-	const googleOAuthEnabled = config.auth.enableGoogleAuth && c.env.GOOGLE_CLIENT_ID && c.env.GOOGLE_CLIENT_SECRET;
+	const googleOAuthEnabled = isGoogleOAuthEnabled(c.env);
 
 	return betterAuth({
 		database: {
@@ -178,10 +182,11 @@ export async function handleAuthRequest(c: AppContext) {
 		const response = await auth.handler(c.req.raw);
 		return response;
 	} catch (error: unknown) {
+		console.error("[AUTH] Authentication request failed", error);
 		return c.json(
 			{
 				error: "Authentication error",
-				message: error instanceof Error ? error.message : "Unknown error",
+				message: "Authentication is temporarily unavailable. Please try again.",
 			},
 			500,
 		);

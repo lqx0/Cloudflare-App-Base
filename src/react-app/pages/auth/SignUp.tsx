@@ -14,6 +14,7 @@ import { GoogleSignInButton } from "@/components/auth/GoogleSignInButton";
 import { authClient } from "@/lib/auth/client";
 import { CheckCircle2, AlertCircle, Eye, EyeOff } from "lucide-react";
 import { config } from "../../../config";
+import { useGoogleAuthAvailable } from "@/hooks/use-auth-capabilities";
 
 const signUpSchema = z.object({
 	name: z.string().max(100, "Name must be 100 characters or less").optional().or(z.literal("")),
@@ -28,6 +29,7 @@ const signUpSchema = z.object({
 type SignUpFormData = z.infer<typeof signUpSchema>;
 
 export function SignUp() {
+	const googleAuthAvailable = useGoogleAuthAvailable();
 	const navigate = useNavigate();
 	const [error, setError] = useState<string | null>(null);
 	const [pendingVerification, setPendingVerification] = useState(false);
@@ -272,7 +274,7 @@ export function SignUp() {
 							</Button>
 						</div>
 
-						{config.auth.enableGoogleAuth && (
+						{config.auth.enableGoogleAuth && googleAuthAvailable && (
 							<>
 								<div className="relative my-4">
 									<div className="absolute inset-0 flex items-center">

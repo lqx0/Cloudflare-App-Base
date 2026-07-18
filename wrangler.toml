@@ -1,4 +1,4 @@
-name = "cloudflare-fullstack-starter"
+name = "cloudflare-ankit"
 main = "./src/worker/index.ts"
 compatibility_date = "2025-04-01"
 compatibility_flags = ["nodejs_compat"]
@@ -25,7 +25,7 @@ remote = true
 
 [[d1_databases]]
 binding = "DB"
-database_name = "cloudflare-fullstack-starter"
+database_name = "cloudflare-ankit"
 database_id = "local"
 
 [env.preview]
@@ -35,7 +35,7 @@ EMAIL_PROVIDER = "cloudflare"
 
 [[env.preview.d1_databases]]
 binding = "DB"
-database_name = "cloudflare-fullstack-starter-preview"
+database_name = "cloudflare-ankit-preview"
 database_id = "YOUR_PREVIEW_D1_DATABASE_ID"
 
 [[env.preview.send_email]]
@@ -49,7 +49,7 @@ EMAIL_PROVIDER = "cloudflare"
 
 [[env.production.d1_databases]]
 binding = "DB"
-database_name = "cloudflare-fullstack-starter"
+database_name = "cloudflare-ankit"
 database_id = "YOUR_PRODUCTION_D1_DATABASE_ID"
 
 [[env.production.send_email]]

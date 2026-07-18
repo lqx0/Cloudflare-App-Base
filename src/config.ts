@@ -13,7 +13,7 @@
 
 export const config = {
 	// Application name - displayed in UI, emails, and page titles
-	appName: "My App",
+	appName: "Cloudflare-Ankit",
 
 	// Auth settings
 	auth: {

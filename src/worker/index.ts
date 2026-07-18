@@ -5,7 +5,7 @@ import { D1Dialect } from "kysely-d1";
 import bcrypt from "bcryptjs";
 import type { Database } from "./types/database";
 import type { AppBindings, AppContext } from "./types/context";
-import { authMiddleware, handleAuthRequest } from "./middleware/auth";
+import { authMiddleware, handleAuthRequest, isGoogleOAuthEnabled } from "./middleware/auth";
 
 const app = new Hono<AppBindings>();
 
@@ -30,6 +30,7 @@ app.get("/api/", (c) => {
 });
 
 // Auth routes
+app.get("/api/auth/capabilities", (c) => c.json({ google: isGoogleOAuthEnabled(c.env) }));
 app.all("/api/auth/*", (c) => handleAuthRequest(c));
 
 // Constant-time string comparison to mitigate timing attacks on key checks.

@@ -1,4 +1,4 @@
-# AI Agent Development Guide
+﻿# AI Agent Development Guide
 
 > Essential instructions for AI coding agents working on this project.
 > For initial setup, see `docs/AGENTS_SETUP.md`.
@@ -237,8 +237,15 @@ const environment = c.env.ENVIRONMENT;  // from wrangler.toml
 
 ## Project-Specific Notes
 
-> Developers: Add project-specific instructions below as the app evolves.
-> Keep this section updated with domain models, business logic, and conventions.
+### Cloudflare-Ankit local-first rules
+
+- Read the paired Cloudflare-Ankit project documents (`README`, `SPEC`, `ARCHITECTURE`, and `TASKS`) in English and Chinese before making project changes. Confirm the intended Chinese meaning before synchronizing the English companion.
+- Preserve the starter's working implementation unless a documented requirement, security/privacy issue, delivery blocker, or explicit user direction requires a change.
+- This initial session is local-only: do not deploy, change remote Workers or D1, run preview/production migrations, sync secrets, create Google OAuth credentials, change DNS or email configuration, create paid resources, or delete remote resources.
+- Keep deployment, secret sync, remote database, backup/restore, time-travel, email-provider, and CLI capabilities in place. Their presence is not permission to execute them.
+- Phase 1 excludes e-commerce, payments, orders, inventory, merchant/user-management UI, exports, multi-tenancy, Astro, and speculative Phase 2 modules.
+- Use Better Auth and the starter's existing account model. Do not add a separate registrations table or replace the password, session, verification-link, password-reset, Google OAuth, or CLI foundations without evidence.
+- Use temporary Cloudflare-Ankit content only; do not invent legal identity, pricing, claims, endorsements, contact details, or final legal text.
 
 ---
 

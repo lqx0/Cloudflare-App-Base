@@ -2,7 +2,10 @@ import { useEffect } from "react";
 import { Routes, Route, useLocation } from "react-router-dom";
 import { TopBar } from "@/components/TopBar";
 import { ProtectedRoute } from "@/components/auth/ProtectedRoute";
+import { AuthOverlay } from "@/components/auth/AuthOverlay";
 import { Home } from "@/pages/Home";
+import { PublicLayout } from "@/components/PublicLayout";
+import { About, Contact, NotFound, Privacy, PublicHome, Services, Terms } from "@/pages/public/Pages";
 import { Profile } from "@/pages/Profile";
 import { SignUp } from "@/pages/auth/SignUp";
 import { VerifyEmail } from "@/pages/auth/VerifyEmail";
@@ -31,6 +34,13 @@ function AppContent() {
 
 	return (
 		<Routes>
+			<Route path="/" element={<PublicLayout><PublicHome /></PublicLayout>} />
+			<Route path="/about" element={<PublicLayout><About /></PublicLayout>} />
+			<Route path="/services" element={<PublicLayout><Services /></PublicLayout>} />
+			<Route path="/contact" element={<PublicLayout><Contact /></PublicLayout>} />
+			<Route path="/privacy" element={<PublicLayout><Privacy /></PublicLayout>} />
+			<Route path="/terms" element={<PublicLayout><Terms /></PublicLayout>} />
+			<Route path="/login" element={<AuthOverlay />} />
 			{/* Public auth routes - no TopBar */}
 			{config.auth.enableSignups && <Route path="/signup" element={<SignUp />} />}
 			<Route path="/verify-email" element={<VerifyEmail />} />
@@ -41,7 +51,7 @@ function AppContent() {
 
 			{/* Protected routes with TopBar */}
 			<Route
-				path="/"
+				path="/account"
 				element={
 					<ProtectedRoute>
 						{shouldShowTopBar ? (
@@ -70,17 +80,7 @@ function AppContent() {
 			/>
 			<Route
 				path="*"
-				element={
-					<ProtectedRoute>
-						{shouldShowTopBar ? (
-							<TopBar>
-								<Home />
-							</TopBar>
-						) : (
-							<Home />
-						)}
-					</ProtectedRoute>
-				}
+				element={<PublicLayout><NotFound /></PublicLayout>}
 			/>
 		</Routes>
 	);
