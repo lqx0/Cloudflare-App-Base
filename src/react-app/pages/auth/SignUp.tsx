@@ -69,8 +69,8 @@ export function SignUp() {
 				// In this case, the session will be set and we can redirect
 				const session = await authClient.getSession();
 				if (session.data?.user) {
-					// User is signed in - redirect to home
-					navigate("/");
+					// User is signed in - take them directly to account settings.
+					navigate("/profile");
 				} else {
 					// User needs to verify email first
 					setPendingEmail(data.email);

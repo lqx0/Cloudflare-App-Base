@@ -37,7 +37,18 @@ function AppContent() {
 		<>
 			<SeoMetadata />
 		<Routes>
-			<Route path="/" element={<PublicLayout><PublicHome /></PublicLayout>} />
+			<Route
+				path="/"
+				element={
+					shouldShowTopBar ? (
+						<TopBar>
+							<PublicHome />
+						</TopBar>
+					) : (
+						<PublicLayout><PublicHome /></PublicLayout>
+					)
+				}
+			/>
 			<Route path="/about" element={<PublicLayout><About /></PublicLayout>} />
 			<Route path="/services" element={<PublicLayout><Services /></PublicLayout>} />
 			<Route path="/contact" element={<PublicLayout><Contact /></PublicLayout>} />
