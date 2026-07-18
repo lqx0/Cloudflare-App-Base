@@ -1,6 +1,7 @@
 import { useEffect } from "react";
 import { Routes, Route, useLocation } from "react-router-dom";
 import { TopBar } from "@/components/TopBar";
+import { SeoMetadata } from "@/components/SeoMetadata";
 import { ProtectedRoute } from "@/components/auth/ProtectedRoute";
 import { AuthOverlay } from "@/components/auth/AuthOverlay";
 import { Home } from "@/pages/Home";
@@ -33,6 +34,8 @@ function AppContent() {
 	const shouldShowTopBar = !isAuthPage && !!session;
 
 	return (
+		<>
+			<SeoMetadata />
 		<Routes>
 			<Route path="/" element={<PublicLayout><PublicHome /></PublicLayout>} />
 			<Route path="/about" element={<PublicLayout><About /></PublicLayout>} />
@@ -83,6 +86,7 @@ function AppContent() {
 				element={<PublicLayout><NotFound /></PublicLayout>}
 			/>
 		</Routes>
+		</>
 	);
 }
 

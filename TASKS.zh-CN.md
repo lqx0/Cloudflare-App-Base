@@ -76,12 +76,12 @@
 
 ## 里程碑 5 — SEO
 
-- [ ] 添加路由独立标题和描述。
-- [ ] 添加 Canonical 和 Open Graph。
-- [ ] 添加社交图片、`robots.txt`、`sitemap.xml`。
-- [ ] 添加语义标题、Alt、站内链接和 Not Found。
-- [ ] 记录 SPA 限制。
-- [ ] 不添加 Astro。
+- [x] 添加路由独立标题和描述。
+- [x] 添加 Canonical 和 Open Graph。
+- [x] 添加社交图片、`robots.txt`、`sitemap.xml`。
+- [x] 添加语义标题、Alt、站内链接和 Not Found。
+- [x] 记录 SPA 限制。
+- [x] 不添加 Astro。
 
 ## 里程碑 6 — 质量和安全
 

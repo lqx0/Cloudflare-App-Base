@@ -28,3 +28,15 @@ test("static crawler resources list the six public canonical URLs", async () => 
   assert.equal((sitemap.match(/<loc>/g) ?? []).length, 6);
   assert.doesNotMatch(sitemap, /www\.fitoa\.net/);
 });
+
+test("SEO component synchronizes canonical and Open Graph metadata", async () => {
+  const componentPath = path.resolve(
+    import.meta.dirname,
+    "../src/react-app/components/SeoMetadata.tsx",
+  );
+  const component = await readFile(componentPath, "utf8");
+
+  assert.match(component, /getSeoMetadata/);
+  assert.match(component, /canonical/);
+  assert.match(component, /og:image/);
+});

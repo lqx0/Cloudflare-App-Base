@@ -76,12 +76,12 @@ Stop after Milestone 1 and report results.
 
 ## Milestone 5 — SEO
 
-- [ ] Add route-specific titles and descriptions.
-- [ ] Add canonical handling and Open Graph metadata.
-- [ ] Add social image, `robots.txt`, and `sitemap.xml`.
-- [ ] Add semantic headings, alt text, internal links, and Not Found behavior.
-- [ ] Record SPA limitations.
-- [ ] Do not add Astro.
+- [x] Add route-specific titles and descriptions.
+- [x] Add canonical handling and Open Graph metadata.
+- [x] Add social image, `robots.txt`, and `sitemap.xml`.
+- [x] Add semantic headings, alt text, internal links, and Not Found behavior.
+- [x] Record SPA limitations.
+- [x] Do not add Astro.
 
 ## Milestone 6 — Quality and security
 

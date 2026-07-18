@@ -2,6 +2,10 @@
 
 Cloudflare-Ankit 是本项目的临时名称。项目是一个托管在 Cloudflare 上、包含用户账户功能的企业网站。客户正式企业名称、品牌和业务内容确定后，再替换当前内容。
 
+## SEO 限制
+
+本 React/Vite 应用在 JavaScript 运行后才更新路由元数据。未执行 JavaScript 的爬虫可能只能看到初始 HTML；以后只在有证据和授权时再评估 SSR 或预渲染。
+
 - 开发域名：`fitoa.net`
 - 域名注册商：GoDaddy
 - 项目基础：`https://github.com/lqx0/cloudflare-fullstack-starter`

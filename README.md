@@ -2,6 +2,10 @@
 
 Cloudflare-Ankit is the temporary name of a Cloudflare-hosted business website with user accounts. The name, branding, and business content will be replaced when the client's formal identity is confirmed.
 
+## SEO limitation
+
+This React/Vite application updates route metadata after JavaScript runs. Crawlers that do not execute JavaScript may see only the initial HTML; SSR or prerendering should be evaluated later only with evidence and approval.
+
 - Development domain: `fitoa.net`
 - Domain registrar: GoDaddy
 - Project foundation: `https://github.com/lqx0/cloudflare-fullstack-starter`
