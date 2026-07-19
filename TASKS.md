@@ -94,18 +94,20 @@ Stop after Milestone 1 and report results.
 - [x] Add focused tests for changed behavior.
 - [x] Check accessibility and responsiveness.
 
-## Later milestones — approval required
+## Later milestones — remote readiness
 
-The following work is now the highest priority for the next phase. Full local readiness is recorded in `docs/REMOTE_READINESS.md`; none of it permits a remote operation until the target environment has explicit approval.
+The completed Preview work is recorded in `docs/REMOTE_READINESS.md`. Future remote work still requires explicit approval for its target environment.
 
-- [!] Priority 1: Google OAuth credentials and remote enablement (awaiting Google Cloud project, redirect URIs, secure credential delivery, and environment-level authorization).
-- [!] Priority 2: domain, email, Preview/Production configuration, or deployment (awaiting canonical domain, Production D1, email approach, and authorization for each remote operation).
+- [x] Priority 1: Google OAuth credentials and Preview enablement. The local and Preview callback flows are verified, with Google OAuth credentials stored as Preview Worker secrets.
+- [x] Priority 2a: Preview configuration and deployment. Preview D1 received the Better Auth OAuth schema migration, and the Preview Worker was deployed and verified.
+- [ ] Priority 2b: Verify Google login using a second, non-owner external Google account after the OAuth app is published.
+- [!] Priority 2c: Decide and implement an actual Preview data-reset policy before promising data deletion to customers. This requires the owner to specify timing, scope, backup handling, and customer notice.
+- [!] Priority 2d: Canonical domain, email-provider configuration, Production D1, and Production deployment remain out of scope until separately approved.
 
 Still requiring separate approval:
 
-- Creating a Google OAuth client
-- Cloudflare Preview or Production deployment
 - Domain/DNS/Email Routing/Email Sending configuration
+- Production D1 migration or deployment
 - Any paid or destructive operation
 
 ## Phase 2 backlog

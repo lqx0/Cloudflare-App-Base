@@ -94,18 +94,20 @@
 - [x] 为修改行为添加聚焦测试。
 - [x] 检查无障碍和响应式。
 
-## 后续里程碑 — 需要批准
+## 后续里程碑 — 远端就绪状态
 
-以下事项已提升为下一阶段最高优先级。完整本地准备见 `docs/REMOTE_READINESS.zh-CN.md`；在针对目标环境的明确授权前，均不得执行远程操作。
+已完成的 Preview 工作记录在 `docs/REMOTE_READINESS.zh-CN.md`。之后的远端工作仍须针对目标环境取得明确授权。
 
-- [!] 优先级 1：Google OAuth 凭据与远端启用（等待 Google Cloud 项目、回调 URI、凭据安全交付和环境级授权）。
-- [!] 优先级 2：域名、邮箱、Preview/Production 配置或部署（等待规范域名、Production D1、邮箱方案及每项远程操作的授权）。
+- [x] 优先级 1：Google OAuth 凭据与 Preview 启用。已验证本地与 Preview 回调流程，Google OAuth 凭据已作为 Preview Worker Secret 保存。
+- [x] 优先级 2a：Preview 配置与部署。Preview D1 已应用 Better Auth OAuth schema migration，Preview Worker 已部署并验证。
+- [ ] 优先级 2b：在 OAuth 应用发布后，使用第二个非所有者的外部 Google 账号验证 Google 登录。
+- [!] 优先级 2c：在向客户承诺清空数据前，决定并实现真实的 Preview 数据重置规则。此项需要所有者明确时间、范围、备份处理和客户告知方式。
+- [!] 优先级 2d：规范域名、邮件服务配置、Production D1 与 Production 部署仍不在范围内，须另行授权。
 
 仍需单独批准：
 
-- 创建 Google OAuth Client
-- Cloudflare Preview 或 Production 部署
 - 域名/DNS/Email Routing/Email Sending 配置
+- Production D1 migration 或部署
 - 任何付费或破坏性操作
 
 ## 第二阶段待办
