@@ -100,7 +100,7 @@ The completed Preview work is recorded in `docs/REMOTE_READINESS.md`. Future rem
 
 - [x] Priority 1: Google OAuth credentials and Preview enablement. The local and Preview callback flows are verified, with Google OAuth credentials stored as Preview Worker secrets.
 - [x] Priority 2a: Preview configuration and deployment. Preview D1 received the Better Auth OAuth schema migration, and the Preview Worker was deployed and verified.
-- [ ] Priority 2b: Verify Google login using a second, non-owner external Google account after the OAuth app is published.
+- [x] Priority 2b: Verified Google registration and login using a second, non-owner external Google account after the OAuth app was published.
 - [!] Priority 2c: Decide and implement an actual Preview data-reset policy before promising data deletion to customers. This requires the owner to specify timing, scope, backup handling, and customer notice.
 - [!] Priority 2d: Canonical domain, email-provider configuration, Production D1, and Production deployment remain out of scope until separately approved.
 
