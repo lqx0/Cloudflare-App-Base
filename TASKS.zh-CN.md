@@ -101,7 +101,7 @@
 - [x] 优先级 1：Google OAuth 凭据与 Preview 启用。已验证本地与 Preview 回调流程，Google OAuth 凭据已作为 Preview Worker Secret 保存。
 - [x] 优先级 2a：Preview 配置与部署。Preview D1 已应用 Better Auth OAuth schema migration，Preview Worker 已部署并验证。
 - [x] 优先级 2b：OAuth 应用发布后，已使用第二个非所有者的外部 Google 账号验证注册和登录。
-- [!] 优先级 2c：在向客户承诺清空数据前，决定并实现真实的 Preview 数据重置规则。此项需要所有者明确时间、范围、备份处理和客户告知方式。
+- [x] 优先级 2c：Preview 数据重置规则已获批准。所有 Preview 数据均为测试数据，随时可能因测试需要部分或全部清除；清除时不通知，默认不备份。每一次破坏性清除仍须取得所有者针对该次操作的明确授权。
 - [!] 优先级 2d：规范域名、邮件服务配置、Production D1 与 Production 部署仍不在范围内，须另行授权。
 
 仍需单独批准：

@@ -60,3 +60,11 @@ This document raises two owner-authorized workstreams to the next phase's highes
 - Writing or synchronizing Secrets.
 - Changing D1, DNS, Email Routing, Email Sending, domains, or paid subscriptions.
 - Preview or Production deploys, remote migrations, deletions, or rollbacks.
+
+## Approved Preview data-reset policy
+
+- All Preview data is test data and may be cleared at any time.
+- A reset does not send notifications.
+- A reset may clear part or all Preview data, according to the testing need.
+- No backup is created by default before a reset.
+- No reset is scheduled or automatic. The owner must explicitly authorize each destructive reset, including its target scope; the agent may then carry it out.
