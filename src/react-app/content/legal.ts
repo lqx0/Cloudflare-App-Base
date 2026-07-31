@@ -16,7 +16,7 @@ export const privacySections = [
   },
   {
     title: "Your requests",
-    body: "For access, correction, or deletion requests, contact info@fitoa.net.",
+    body: "Each project must publish a project-specific privacy contact for access, correction, or deletion requests.",
   },
 ];
 
@@ -35,6 +35,6 @@ export const termsSections = [
   },
   {
     title: "Contact",
-    body: "For general policy questions, contact info@fitoa.net.",
+    body: "Each project must publish its own confirmed contact for policy questions.",
   },
 ];

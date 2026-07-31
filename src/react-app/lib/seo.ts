@@ -1,4 +1,5 @@
-export const canonicalOrigin = "https://fitoa.net";
+// Placeholder for the reusable base. Project branches must replace this value.
+export const canonicalOrigin = "https://example.com";
 
 export type SeoMetadata = {
   title: string;
@@ -9,52 +10,52 @@ export type SeoMetadata = {
 
 const routeMetadata: Record<string, SeoMetadata> = {
   "/": {
-    title: "Cloudflare-Ankit | Provisional project",
+    title: "Cloudflare-App-Base | Reusable application foundation",
     description:
-      "Cloudflare-Ankit is a provisional project site that will evolve with confirmed client requirements.",
+      "A reusable full-stack application foundation for projects running on Cloudflare.",
     canonicalPath: "/",
     indexable: true,
   },
   "/about": {
-    title: "About | Cloudflare-Ankit",
+    title: "About | Cloudflare-App-Base",
     description:
-      "Learn about the provisional Cloudflare-Ankit project identity.",
+      "Learn about the reusable Cloudflare-App-Base project foundation.",
     canonicalPath: "/about",
     indexable: true,
   },
   "/services": {
-    title: "Services | Cloudflare-Ankit",
+    title: "Services | Cloudflare-App-Base",
     description:
-      "Services and products for Cloudflare-Ankit will be confirmed before delivery.",
+      "Review the reusable capabilities provided by Cloudflare-App-Base.",
     canonicalPath: "/services",
     indexable: true,
   },
   "/contact": {
-    title: "Contact | Cloudflare-Ankit",
+    title: "Contact | Cloudflare-App-Base",
     description:
-      "Contact information for Cloudflare-Ankit will be published after confirmation.",
+      "Project branches provide their own confirmed contact information.",
     canonicalPath: "/contact",
     indexable: true,
   },
   "/privacy": {
-    title: "Privacy | Cloudflare-Ankit",
+    title: "Privacy | Cloudflare-App-Base",
     description:
-      "Review the provisional privacy sample for Cloudflare-Ankit.",
+      "Review the provisional privacy sample included with Cloudflare-App-Base.",
     canonicalPath: "/privacy",
     indexable: true,
   },
   "/terms": {
-    title: "Terms | Cloudflare-Ankit",
+    title: "Terms | Cloudflare-App-Base",
     description:
-      "Review the provisional terms sample for Cloudflare-Ankit.",
+      "Review the provisional terms sample included with Cloudflare-App-Base.",
     canonicalPath: "/terms",
     indexable: true,
   },
 };
 
 const notFoundMetadata: SeoMetadata = {
-  title: "Page not found | Cloudflare-Ankit",
-  description: "The requested Cloudflare-Ankit page could not be found.",
+  title: "Page not found | Cloudflare-App-Base",
+  description: "The requested Cloudflare-App-Base page could not be found.",
   canonicalPath: "/",
   indexable: false,
 };

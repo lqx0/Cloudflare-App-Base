@@ -1,4 +1,4 @@
-﻿# Cloudflare-Ankit Agent 指令
+﻿# Cloudflare-App-Base Agent 指令
 
 修改仓库前阅读本文件。
 
@@ -117,7 +117,7 @@ Codex 第一次执行只限本地。
 
 ## 内容
 
-使用 Cloudflare-Ankit 作为临时品牌。
+`main` 使用 Cloudflare-App-Base 作为通用基础品牌。具体客户或产品改动必须进入 `project/<name>` 分支。
 
 不得编造最终法律企业名称、地址、产品、价格、推荐、认证、保证、联系人或法律文本。
 

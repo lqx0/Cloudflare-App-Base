@@ -9,7 +9,7 @@ test("returns canonical metadata for the public home route", () => {
 
   assert.equal(metadata.canonicalPath, "/");
   assert.equal(metadata.indexable, true);
-  assert.match(metadata.title, /Cloudflare-Ankit/);
+  assert.match(metadata.title, /Cloudflare-App-Base/);
 });
 
 test("marks account and unknown routes as noindex", () => {
@@ -24,9 +24,9 @@ test("static crawler resources list the six public canonical URLs", async () => 
     readFile(path.join(publicDirectory, "sitemap.xml"), "utf8"),
   ]);
 
-  assert.match(robots, /Sitemap: https:\/\/fitoa\.net\/sitemap\.xml/);
+  assert.match(robots, /Sitemap: https:\/\/example\.com\/sitemap\.xml/);
   assert.equal((sitemap.match(/<loc>/g) ?? []).length, 6);
-  assert.doesNotMatch(sitemap, /www\.fitoa\.net/);
+  assert.doesNotMatch(sitemap, /fitoa\.net/);
 });
 
 test("SEO component synchronizes canonical and Open Graph metadata", async () => {

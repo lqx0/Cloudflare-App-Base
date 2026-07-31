@@ -10,7 +10,7 @@ Do not work directly in the upstream starter repository unless it is intentional
 
 ## Prompt for Codex
 
-You are starting the Cloudflare-Ankit project.
+You are starting Cloudflare-App-Base or one of its project branches.
 
 Read these files first:
 

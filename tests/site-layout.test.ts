@@ -63,6 +63,6 @@ test("the homepage uses the same page heading wrapper as the informational pages
 
 	assert.match(
 		pages,
-		/export function PublicHome\(\) \{[\s\S]*?<Page title="A simple, secure starting point\.">/,
+		/export function PublicHome\(\) \{[\s\S]*?<Page title="A reusable Cloudflare application foundation\.">/,
 	);
 });

@@ -1,149 +1,38 @@
-﻿# Cloudflare-Ankit Product Specification
+# Cloudflare-App-Base Product Specification
 
 ## 1. Purpose
 
-This document defines the approved Phase 1 scope for Cloudflare-Ankit.
+This document defines the reusable `main` baseline, not a specific client product. Each business application must define its own specification on a `project/<name>` branch.
 
-Cloudflare-Ankit and `fitoa.net` are temporary development identifiers. Final business identity, copy, branding, products, and services remain unconfirmed.
+## 2. Required capabilities
 
-## 2. Foundation
+1. A React/Vite single-page application and Hono Worker running on the same origin.
+2. Better Auth email/password registration, sign-in, sessions, and protected routes.
+3. Google OAuth integration capability, enabled only when a project supplies valid credentials.
+4. D1, Kysely, migrations, and local data tooling.
+5. Conditional email providers, verification links, and password-reset capability.
+6. Local, preview, and production configuration with deployment readiness.
+7. Database backup, restore, seed, time travel, and authentication CLI tooling.
+8. A responsive shared layout, themes, basic error pages, and accessibility foundations.
+9. Focused tests, lint, builds, type checks, and security headers.
+10. Paired English and Chinese documentation.
 
-Use `lqx0/cloudflare-fullstack-starter`.
+## 3. Base data
 
-Preserve the starter's working implementation by default. Modify it only when there is a material requirement conflict, security/privacy issue, delivery blocker, or explicit instruction.
+The main branch maintains only the starter account models: users, accounts, sessions, and verification data. Email is the unique account identity. Do not add product, order, payment, address, recruitment, quiz, or other business models to `main`.
 
-## 3. Phase 1 objectives
+## 4. Project branch responsibilities
 
-Phase 1 must provide:
+Every `project/<name>` must define its own branding and domain, user roles, business pages, business data, privacy and retention policy, email purposes, remote resource names, acceptance criteria, and future-feature notices.
 
-1. A simple professional business website.
-2. Public business-information pages.
-3. Product or service presentation.
-4. Email/password registration and login.
-5. Google sign-in capability using the starter's existing integration.
-6. A protected account area.
-7. Basic profile viewing and editing.
-8. Privacy and Terms pages.
-9. Basic SEO.
-10. Responsive and accessible presentation.
-11. A clean path toward later e-commerce expansion.
-12. Local development without unauthorized remote changes.
+## 5. Security and authorization
 
-## 4. Non-goals
+The base repository must not track secrets. Remote Workers/D1, migrations, secrets, OAuth, DNS, email, paid resources, and deletion require explicit authorization for the target environment. Preserving tooling is not permission to execute it.
 
-Do not implement product administration, cart, checkout, payments, orders, inventory, shipping, appointments, merchant dashboard, user-list dashboard, export UI, multi-tenancy, Astro, or premature e-commerce database models.
+## 6. Non-goals
 
-## 5. Public pages
+The main branch does not provide client copy, final legal text, a generic admin generator, a multi-tenant platform, e-commerce, or speculative abstractions for every future project.
 
-Initial routes:
+## 7. Acceptance
 
-- Home
-- About
-- Products or Services
-- Optional detail page
-- Contact
-- Login
-- Register
-- Account/Profile
-- Privacy
-- Terms
-- Not Found
-
-Use simple provisional Cloudflare-Ankit content until the client provides final material.
-
-Do not invent testimonials, awards, certifications, customer numbers, guarantees, prices, addresses, or legal claims.
-
-## 6. Authentication
-
-### Email/password
-
-Keep the starter's Better Auth flow, password hashing, sessions, protected routes, password-reset hooks, and verification-link hooks.
-
-Email is a unique user identity.
-
-### Email verification
-
-- Initial local development does not require an email provider.
-- Preserve the starter's conditional behavior when mail is not configured.
-- When a provider is configured later, use the existing verification-link flow.
-- Do not implement numeric OTP in Phase 1.
-
-### Google OAuth
-
-- Preserve the existing integration.
-- Enable it only when valid credentials are available.
-- Missing credentials must not break email/password login.
-- Do not create a Google OAuth client without explicit approval.
-- Do not build unsafe custom account linking.
-
-### Account deletion
-
-- Preserve the existing deletion implementation and administrator/CLI capability.
-- Hide or disable the ordinary user-facing delete-account action during Phase 1.
-- Do not delete users without explicit authorization.
-
-## 7. Profile
-
-Minimum profile data:
-
-- Name
-- Email
-- Optional image
-- Verification status
-- Created and updated timestamps
-
-Recommended initial editable field: name.
-
-Keep existing safe email/password editing if it already works, but do not expand it without need.
-
-## 8. Data retention and administration
-
-Retain account data until authorized deletion, a valid privacy/legal request, or an approved policy change.
-
-Phase 1 does not include a browser-based user list, export UI, public lookup, or admin dashboard.
-
-Preserve CLI administration, but do not run remote commands without approval.
-
-## 9. SEO
-
-Every public page should support title, description, canonical URL, Open Graph metadata, social image, semantic headings, alt text, internal links, `robots.txt`, `sitemap.xml`, and correct not-found behavior.
-
-Do not add inaccurate structured data.
-
-Retain React/Vite for Phase 1 and record SPA limitations honestly.
-
-## 10. Domain and email
-
-Temporary domain: `fitoa.net`.
-
-Recommended canonical URL: `https://fitoa.net`.
-
-Future redirect: `https://www.fitoa.net` to `https://fitoa.net`.
-
-Desired business mailbox: `info@fitoa.net`.
-
-First evaluate Zoho Mail's free custom-domain availability. Use Cloudflare Email Routing only as an inbound-forwarding fallback. Do not configure DNS or email without approval.
-
-## 11. Remote policy
-
-Keep existing remote-operation scripts, but require explicit approval before any deployment, remote D1 change, remote migration, secret synchronization, OAuth setup, DNS change, email configuration, paid resource, or destructive operation.
-
-The first Codex session is local-only.
-
-## 12. Documentation
-
-Maintain:
-
-```text
-README.md / README.zh-CN.md
-SPEC.md / SPEC.zh-CN.md
-ARCHITECTURE.md / ARCHITECTURE.zh-CN.md
-TASKS.md / TASKS.zh-CN.md
-AGENTS.md / AGENTS.zh-CN.md
-```
-
-Confirm decisions in Chinese meaning first, then synchronize English. Do not add language-precedence notices to public document bodies.
-
-## 13. First-session acceptance
-
-The first Codex session is complete when the repository is inspected, the starter is locally understood, document pairs exist, dependencies install, local setup is verified, existing authentication is tested, lint/build/check are run, no remote resource is changed, and the next local task is reported.
+Main-branch changes must keep paired documents aligned, pass focused and full tests, lint, and build, and report the Git branch, commit, push, and any remote operations that were not executed.

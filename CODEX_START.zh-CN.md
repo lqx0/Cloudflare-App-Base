@@ -10,7 +10,7 @@ https://github.com/lqx0/cloudflare-fullstack-starter
 
 ## 给 Codex 的提示词
 
-你现在开始 Cloudflare-Ankit 项目。
+你现在开始 Cloudflare-App-Base 或它的一个项目分支。
 
 首先阅读：
 

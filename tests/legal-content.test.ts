@@ -6,12 +6,14 @@ import {
   termsSections,
 } from "../src/react-app/content/legal";
 
-test("legal sample content states its draft status and data-request contact", () => {
+test("legal sample content states its draft status without a client contact", () => {
   assert.equal(
     draftLegalNotice,
     "Draft sample — requires owner and legal review before publication.",
   );
-  assert.ok(privacySections.some(({ body }) => body.includes("info@fitoa.net")));
+  assert.ok(
+    privacySections.some(({ body }) => body.includes("project-specific privacy contact")),
+  );
   assert.ok(
     privacySections.some(({ body }) => body.includes("authorized deletion")),
   );

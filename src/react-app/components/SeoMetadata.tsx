@@ -19,7 +19,7 @@ export function SeoMetadata() {
     setMeta("property", "og:title", metadata.title);
     setMeta("property", "og:description", metadata.description);
     setMeta("property", "og:url", url);
-    setMeta("property", "og:image", `${canonicalOrigin}/cloudflare-ankit-social-card.png`);
+    setMeta("property", "og:image", `${canonicalOrigin}/vite.svg`);
     let canonical = document.head.querySelector<HTMLLinkElement>('link[rel="canonical"]');
     if (!canonical) { canonical = document.createElement("link"); canonical.rel = "canonical"; document.head.append(canonical); }
     canonical.href = url;

@@ -6,7 +6,7 @@ export function SiteFooter() {
 			<div className="mx-auto flex max-w-6xl flex-wrap items-center gap-x-4 gap-y-2 px-6 py-6 text-sm text-muted-foreground">
 				<Link to="/privacy" className="hover:text-foreground">Privacy</Link>
 				<Link to="/terms" className="hover:text-foreground">Terms</Link>
-				<span>Cloudflare-Ankit · provisional information</span>
+				<span>Cloudflare-App-Base · reusable project foundation</span>
 			</div>
 		</footer>
 	);

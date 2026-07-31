@@ -1,168 +1,28 @@
-﻿# Cloudflare-Ankit
+# Cloudflare-App-Base
 
-Cloudflare-Ankit is the temporary name of a Cloudflare-hosted business website with user accounts. The name, branding, and business content will be replaced when the client's formal identity is confirmed.
+Cloudflare-App-Base is a reusable application foundation derived from a Cloudflare full-stack starter. It preserves the shared authentication, database, email, environment, CLI, testing, and deployment-readiness capabilities needed by future projects.
 
-## SEO limitation
+See [VISION.md](VISION.md) for the purpose, vision, and branch policy.
 
-This React/Vite application updates route metadata after JavaScript runs. Crawlers that do not execute JavaScript may see only the initial HTML; SSR or prerendering should be evaluated later only with evidence and approval.
+## Technology foundation
 
-## Security review
-
-Local review completed on 2026-07-18: production and local response-header policies are covered by focused tests; tracked files contain no environment files; `npm audit --omit=dev` reported no vulnerabilities. Remote deployment and configuration remain out of scope.
-
-- Development domain: `fitoa.net`
-- Domain registrar: GoDaddy
-- Project foundation: `https://github.com/lqx0/cloudflare-fullstack-starter`
-
-## Preservation rule
-
-Use the starter as the baseline. Preserve its existing working behavior unless it materially conflicts with an approved requirement, creates a security/privacy issue, blocks Phase 1 delivery, or the user explicitly requests a change.
-
-Do not remove existing deployment, remote database, backup, restore, OAuth, email, CLI, or secret-management capabilities merely because executing them currently requires permission.
-
-## Phase 1
-
-Phase 1 includes:
-
-- Business home page
-- About page
-- Product or service presentation
-- Contact information
-- Email/password registration and login
-- Google sign-in capability
-- Protected account/profile page
-- Basic profile editing
-- Privacy Policy
-- Terms and Conditions
-- Basic SEO
-- Responsive design
-- Local development and deployment preparation
-
-Phase 1 excludes:
-
-- Shopping cart, checkout, payments
-- Orders, inventory, shipping
-- Product administration
-- Merchant or user-management dashboard
-- User data export UI
-- Appointment booking
-- Multi-tenancy
-- Astro or a second frontend application
-
-## Existing starter technology
-
-Keep the starter's existing stack and tooling:
-
-- React, TypeScript, Vite, React Router
+- React 19, TypeScript, Vite, and React Router
 - Tailwind CSS and shadcn/ui
 - Hono on Cloudflare Workers
-- Cloudflare D1
-- Kysely
-- Better Auth
-- Email/password authentication
-- Verification-link and password-reset hooks
-- Google OAuth support
-- Local, preview, and production environments
-- Database migration, backup, restore, seed, and time-travel tools
-- CLI user administration
-- Cloudflare binding type generation
-- Deployment and secret-sync scripts
+- Cloudflare D1, Kysely, and `kysely-d1`
+- Better Auth email/password authentication and Google OAuth capability
+- email provider adapters
+- local, preview, and production configuration with Wrangler tooling
+- database migration, backup, restore, seed, time travel, and user-management CLI tools
 
-The starter currently requires Node.js `>=22.15.0 <23`.
+Required Node.js version: `>=22.15.0 <23`.
 
-## Authentication policy
+## Usage
 
-- Preserve the existing Better Auth implementation.
-- Preserve email/password sign-up and sign-in.
-- Preserve secure sessions and protected routes.
-- Preserve Google OAuth support, but do not create credentials without approval.
-- Preserve verification-link and password-reset capabilities.
-- Do not replace the existing verification-link flow with a custom numeric OTP flow in Phase 1.
-- When no email provider is configured, preserve the starter's current local/development behavior.
-- Keep the existing account-deletion implementation and CLI capability, but hide or disable the ordinary user-facing delete-account action during Phase 1.
-- Do not delete users without explicit authorization.
-
-## User data
-
-Collect only the minimum account information:
-
-- Name
-- Email
-- Optional profile image
-- Email verification status
-- Created and updated timestamps
-
-Do not add residential address, date of birth, identity documents, payment data, or other sensitive profile fields.
-
-Email is a unique account identity.
-
-Account data is retained indefinitely until deleted by an authorized administrator, removed in response to a valid legal/privacy request, or changed by a future retention policy.
-
-Phase 1 does not include a browser-based user list or data export interface.
-
-## Routes
-
-Recommended routes:
-
-```text
-/
-about
-products
-products/:slug
-contact
-login
-register
-account
-privacy
-terms
-api/*
-```
-
-Canonical production hostname:
-
-```text
-https://fitoa.net
-```
-
-When remote configuration is approved, `www.fitoa.net` should redirect permanently to `fitoa.net`.
-
-## SEO
-
-Public pages should support:
-
-- Unique titles and descriptions
-- Canonical URLs
-- Open Graph metadata
-- Social preview image
-- `robots.txt`
-- `sitemap.xml`
-- Semantic HTML
-- Logical headings
-- Image alt text
-- Internal links
-- Correct 404/noindex behavior
-
-Do not invent final business claims or structured-data facts.
-
-Retain React/Vite for Phase 1. Do not introduce Astro without evidence that it is needed.
-
-## Domain email
-
-Desired address:
-
-```text
-info@fitoa.net
-```
-
-Preferred approach:
-
-1. Check whether Zoho Mail's free custom-domain plan is available and suitable.
-2. If approved and available, use it as a real mailbox for sending and receiving as `info@fitoa.net`.
-3. Otherwise, Cloudflare Email Routing may be used as an inbound-forwarding fallback only.
-4. Gmail or Outlook.com may receive forwarded mail, but they are not by themselves full custom-domain mailbox services.
-5. Do not configure email or DNS without explicit approval.
-
-Authentication emails are separate from the human business mailbox. Preserve the starter's email-provider adapter.
+1. Keep `main` as the stable reusable foundation.
+2. Create `project/<name>` from `main`.
+3. Replace branding, domains, pages, legal content, data models, and remote resource names in the project branch.
+4. Return genuinely reusable fixes and improvements to `main`.
 
 ## Local development
 
@@ -176,38 +36,24 @@ npm run build
 npm run check
 ```
 
-Review initialization prompts before running `npm run init`. Use local resources only during the first Codex session.
+Review initialization prompts before running them. Local development must not connect to production by default.
 
-## Remote-operation restriction
+## Main branch boundaries
 
-Without explicit approval for the exact operation, do not:
-
-- Deploy preview or production
-- Create or modify remote Workers or D1 databases
-- Apply preview or production migrations
-- Synchronize remote secrets
-- Create Google OAuth credentials
-- Modify GoDaddy nameservers or Cloudflare DNS
-- Configure domain email
-- Create paid resources
-- Delete remote resources
-
-Keeping an existing capability is not authorization to execute it.
+- Do not include a specific client or project's requirements.
+- Do not add speculative business data models.
+- Preserve working starter infrastructure.
+- Do not remove deployment, secret, remote database, email, or CLI capabilities merely because executing them is not currently authorized.
+- Do not perform remote deployments, migrations, secret synchronization, OAuth, DNS, email, paid, or destructive operations without specific authorization.
 
 ## Documentation
 
-Default Markdown filenames are English:
+`README`, `VISION`, `SPEC`, `ARCHITECTURE`, `TASKS`, and `AGENTS` have paired English and Chinese files. Confirm the Chinese meaning first, synchronize English, and review both for structural and semantic consistency.
 
-- `README.md`
-- `SPEC.md`
-- `ARCHITECTURE.md`
-- `TASKS.md`
-- `AGENTS.md`
+## History
 
-Chinese companion files use `.zh-CN.md`.
-
-Both versions must be maintained together. Internally, confirm decisions in Chinese meaning first, then synchronize English. Do not place language-precedence notices in the public document bodies.
+The former Cloudflare-Ankit state is preserved on `archive/cloudflare-ankit-20260801`. Historical design and plan documents remain unchanged as accurate records of earlier work.
 
 ## License
 
-The upstream starter is MIT licensed. Preserve its required copyright and license notice in source distributions or substantial copies. No front-end attribution is required.
+The upstream starter is MIT licensed. Preserve the required copyright and license notice in source distributions or substantial copies.

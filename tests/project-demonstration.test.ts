@@ -2,13 +2,11 @@ import assert from "node:assert/strict";
 import { readFile } from "node:fs/promises";
 import test from "node:test";
 
-test("homepage links safely to the SJS demonstration brief", async () => {
+test("homepage presents a neutral reusable foundation", async () => {
   const page = await readFile("src/react-app/pages/public/Pages.tsx", "utf8");
-  assert.match(page, /https:\/\/www\.sjs\.co\.nz\/job-details\/27276\/website-developer-7842/);
-  assert.match(page, /target="_blank"/);
-  assert.match(page, /rel="noreferrer"/);
-  assert.match(page, /lqixv@hotmail\.com/);
-  assert.match(page, /developer domain: fitoa\.net/);
+  assert.match(page, /Cloudflare-App-Base/);
+  assert.match(page, /project\/&lt;name&gt;/);
+  assert.doesNotMatch(page, /Ankit Kumar|fitoa\.net|sjs\.co\.nz|lqixv@hotmail\.com/);
   assert.match(page, /rounded-full/);
   assert.match(page, /font-semibold/);
 });
