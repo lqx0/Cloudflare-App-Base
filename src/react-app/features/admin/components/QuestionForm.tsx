@@ -1,6 +1,7 @@
 import { useState, type FormEvent } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Textarea } from "@/components/ui/textarea";
 import { createQuestion, type AdminQuestion, type AdminQuestionInput } from "../admin-questions-api";
 import { QuestionTypeSelector } from "./QuestionTypeSelector";
@@ -37,7 +38,7 @@ export function QuestionForm({ onCreated }: { onCreated(question: AdminQuestion)
 			</div>
 			<form onSubmit={(event) => void submit(event)} className="mt-6 space-y-5">
 				<div className="space-y-2">
-					<p className="text-sm font-medium">Question type</p>
+					<label htmlFor="question-type" className="text-sm font-medium">Question type</label>
 					<QuestionTypeSelector value={type} onChange={setType} />
 				</div>
 
@@ -57,11 +58,15 @@ export function QuestionForm({ onCreated }: { onCreated(question: AdminQuestion)
 				{type === "true_false" ? (
 					<div className="space-y-2">
 						<label htmlFor="correct-answer" className="text-sm font-medium">Correct answer</label>
-						<select id="correct-answer" value={correctAnswer} onChange={(event) => setCorrect(event.target.value)} required className="flex h-9 w-full rounded-md border border-input bg-transparent px-3 py-1 text-sm shadow-xs">
-							<option value="" disabled>Select an answer</option>
-							<option value="true">True</option>
-							<option value="false">False</option>
-						</select>
+						<Select value={correctAnswer} onValueChange={setCorrect} required>
+							<SelectTrigger id="correct-answer">
+								<SelectValue placeholder="Select an answer" />
+							</SelectTrigger>
+							<SelectContent>
+								<SelectItem value="true">True</SelectItem>
+								<SelectItem value="false">False</SelectItem>
+							</SelectContent>
+						</Select>
 					</div>
 				) : (
 					<div className="space-y-2">
