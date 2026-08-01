@@ -1,0 +1,6 @@
+import { Input } from "@/components/ui/input";
+import { Textarea } from "@/components/ui/textarea";
+import type { PublicQuizQuestion } from "../types";
+export function QuizQuestionCard({ question, value, onChange, disabled }: { question: PublicQuizQuestion; value: string; onChange(value: string): void; disabled?: boolean }) {
+	return <fieldset className="space-y-3 rounded-lg border p-5" disabled={disabled}><legend className="font-semibold">{question.prompt}</legend>{question.type === "multiple_choice" && question.options?.map((option) => <label key={option} className="flex gap-2"><input type="radio" name={question.id} value={option} checked={value === option} onChange={() => onChange(option)} />{option}</label>)}{question.type === "true_false" && ["true", "false"].map((option) => <label key={option} className="flex gap-2"><input type="radio" name={question.id} value={option} checked={value === option} onChange={() => onChange(option)} />{option === "true" ? "True" : "False"}</label>)}{question.type === "free_text" && <><label htmlFor={`answer-${question.id}`} className="text-sm">Your answer</label><Textarea id={`answer-${question.id}`} value={value} onChange={(event) => onChange(event.target.value)} /></>}{question.type !== "free_text" && <Input type="hidden" value={value} readOnly />}</fieldset>;
+}

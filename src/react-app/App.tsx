@@ -13,6 +13,10 @@ import { ForgotPassword } from "@/pages/auth/ForgotPassword";
 import { ResetPassword } from "@/pages/auth/ResetPassword";
 import { config } from "../config";
 import "./App.css";
+import { QuizPage } from "@/pages/QuizPage";
+import { QuestionBankPage } from "@/pages/admin/QuestionBankPage";
+import { AdminSubmissionsPage } from "@/pages/admin/AdminSubmissionsPage";
+import { AdminRoute } from "@/components/auth/AdminRoute";
 
 function AppContent() {
 	return (
@@ -26,6 +30,9 @@ function AppContent() {
 			<Route path="/privacy" element={<SiteLayout><Privacy /></SiteLayout>} />
 			<Route path="/terms" element={<SiteLayout><Terms /></SiteLayout>} />
 			<Route path="/login" element={<SiteLayout><AuthOverlay /></SiteLayout>} />
+			<Route path="/quiz" element={<SiteLayout><ProtectedRoute><QuizPage /></ProtectedRoute></SiteLayout>} />
+			<Route path="/admin/questions" element={<SiteLayout><ProtectedRoute><AdminRoute><QuestionBankPage /></AdminRoute></ProtectedRoute></SiteLayout>} />
+			<Route path="/admin/submissions" element={<SiteLayout><ProtectedRoute><AdminRoute><AdminSubmissionsPage /></AdminRoute></ProtectedRoute></SiteLayout>} />
 			{config.auth.enableSignups && <Route path="/signup" element={<SiteLayout><SignUp /></SiteLayout>} />}
 			<Route path="/verify-email" element={<SiteLayout><VerifyEmail /></SiteLayout>} />
 			<Route path="/verify-email/:token" element={<SiteLayout><VerifyEmail /></SiteLayout>} />

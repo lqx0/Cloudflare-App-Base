@@ -1,0 +1,2 @@
+import type { QuizResult } from "../types";
+export function QuizResults({ results }: { results: QuizResult[] }) { return <section className="space-y-4" aria-live="polite">{results.map((result) => <article key={result.id} className="rounded-lg border p-5"><h2 className="font-semibold">{result.prompt}</h2><p><strong>Your answer:</strong> {result.userAnswer}</p><p><strong>{result.type === "free_text" ? "Reference answer / Evaluation guidance" : "Correct answer"}:</strong> {result.correctAnswer}</p></article>)}</section>; }
