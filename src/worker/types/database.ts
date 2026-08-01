@@ -2,6 +2,15 @@
  * Database schema types for Kysely matching Better Auth tables.
  */
 export interface Database {
+  quiz_questions: {
+    id: string;
+    type: "multiple_choice" | "true_false" | "free_text";
+    prompt: string;
+    optionsJson: string | null;
+    correctAnswer: string;
+    createdByUserId: string;
+    createdAt: number;
+  };
   users: {
     id: string;
     email: string;

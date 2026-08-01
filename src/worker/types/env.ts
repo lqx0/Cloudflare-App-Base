@@ -14,6 +14,7 @@ export type AppEnv = {
 	ENVIRONMENT?: string;
 	EMAIL_PROVIDER?: EmailProvider;
 	EMAIL_API_KEY?: string;
+	RECRUIT_QUIZ_RECIPIENT_EMAIL?: string;
 	// Explicitly enable or disable verification and password-reset emails for an environment.
 	AUTH_EMAILS_ENABLED?: string;
 	AUTH_EMAILS_LOCAL_ENABLED?: string;

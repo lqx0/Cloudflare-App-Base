@@ -13,7 +13,7 @@
 
 export const config = {
 	// Application name - displayed in UI, emails, and page titles
-	appName: "Cloudflare-App-Base",
+	appName: "aDaptQuiz",
 
 	// Auth settings
 	auth: {
@@ -29,7 +29,7 @@ export const config = {
 		defaultProvider: "cloudflare",
 		// The "from" address for outgoing emails
 		// Note: This address must be allowed by the active email provider.
-		fromAddress: "noreply@example.com",
+		fromAddress: "quiz@mail.fitoa.net",
 	},
 } as const;
 

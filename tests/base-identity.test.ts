@@ -6,12 +6,12 @@ import { config } from "../src/config";
 
 const root = path.resolve(import.meta.dirname, "..");
 
-test("uses the reusable Cloudflare App Base identity", async () => {
+test("uses the project display name while preserving the reusable base package", async () => {
   const packageJson = JSON.parse(
     await readFile(path.join(root, "package.json"), "utf8"),
   ) as { name: string };
 
-  assert.equal(config.appName, "Cloudflare-App-Base");
+  assert.equal(config.appName, "aDaptQuiz");
   assert.equal(packageJson.name, "cloudflare-app-base");
 });
 
