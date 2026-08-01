@@ -51,12 +51,13 @@
 ## 远程启用，必须另行授权
 
 - [x] 将唯一远程测试目标配置为 `adaptquiz`，记录其 D1 ID，选择 Resend，并保留 fail-closed 远程前置门禁。
+- [x] 创建远程 `adaptquiz` D1，并在备份后应用全部项目迁移。
 - [ ] 创建或配置 Resend 账户和受限 API Key。
 - [ ] 在 GoDaddy 为 `mail.fitoa.net` 添加 Resend DNS 记录。
 - [ ] 配置目标环境发件地址、收件地址和 Secret。
-- [ ] 部署 `adaptquiz` 测试 Worker，并对现有 `adaptquiz` D1 执行项目迁移。
+- [ ] 部署 `adaptquiz` 测试 Worker。
 - [ ] 使用测试账号验证真实邮件。
-- [ ] 推送远程分支。
+- [x] 推送 `project/adapt-quiz`，并停用远程 `project/recruit-quiz` 分支。
 
 仍需另行审批和配置的字段：
 

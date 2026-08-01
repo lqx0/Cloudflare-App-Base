@@ -51,12 +51,13 @@ Status: `[ ]` not started, `[-]` in progress, `[x]` completed, `[!]` blocked.
 ## Remote enablement, separately authorized
 
 - [x] Configure the single remote test target as `adaptquiz`, record its D1 ID, select Resend, and retain the fail-closed remote preflight.
+- [x] Create the remote `adaptquiz` D1 and apply all project migrations after taking a backup.
 - [ ] Create or configure a Resend account and restricted API key.
 - [ ] Add Resend DNS records for `mail.fitoa.net` in GoDaddy.
 - [ ] Configure the target environment's sender, recipient, and secrets.
-- [ ] Deploy the `adaptquiz` test Worker and apply project migrations to the existing `adaptquiz` D1.
+- [ ] Deploy the `adaptquiz` test Worker.
 - [ ] Verify real delivery with a test account.
-- [ ] Push the remote branch.
+- [x] Push `project/adapt-quiz` and retire the remote `project/recruit-quiz` branch.
 
 Values still requiring separate approval and provider configuration:
 
