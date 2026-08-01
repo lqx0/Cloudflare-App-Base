@@ -1,6 +1,11 @@
 import assert from "node:assert/strict";
 import { readFile } from "node:fs/promises";
 import test from "node:test";
+import * as React from "react";
+import { renderToStaticMarkup } from "react-dom/server";
+import { QuizResults } from "../src/react-app/features/quiz/components/QuizResults";
+
+Object.assign(globalThis, { React });
 
 test("Quiz presents round context and answered progress", async () => {
   const page = await readFile("src/react-app/pages/QuizPage.tsx", "utf8");
@@ -22,6 +27,26 @@ test("Quiz results separate user and reference answers", async () => {
 	assert.match(results, /bg-muted\/40/);
 	assert.match(results, /Your answer/);
 	assert.match(results, /Reference answer \/ Evaluation guidance/);
+});
+
+test("Quiz results clearly distinguish an incorrect objective answer from the correct answer", () => {
+	const markup = renderToStaticMarkup(
+		React.createElement(QuizResults, {
+			results: [
+				{
+					id: "question-1",
+					type: "multiple_choice",
+					prompt: "Which answer is correct?",
+					options: ["A", "B"],
+					userAnswer: "A",
+					correctAnswer: "B",
+				},
+			],
+		}),
+	);
+
+	assert.match(markup, /border-destructive\/40 bg-destructive\/5/);
+	assert.match(markup, /border-emerald-500\/40 bg-emerald-500\/10/);
 });
 
 test("Question bank uses a responsive creation and list workspace", async () => {
