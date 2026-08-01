@@ -31,7 +31,7 @@ test("preview configuration targets isolated aDaptQuiz resources", async () => {
 		/\[\[env\.preview\.d1_databases\]\][\s\S]*database_name\s*=\s*"adaptquiz"/,
 	);
 	assert.doesNotMatch(wranglerConfig, /cloudflare-ankit-preview/);
-	assert.match(viteConfig, /mode === "preview"[\s\S]*?cfg\.name = baseName;/);
+	assert.match(viteConfig, /mode === "preview"[\s\S]*?cfg\.name = previewName;/);
 	assert.doesNotMatch(viteConfig, /mode === "preview"[\s\S]*?cfg\.name = `\$\{baseName\}-preview`/);
 });
 

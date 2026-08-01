@@ -110,6 +110,8 @@ function parseWranglerToml(filePath: string) {
 	const content = fs.readFileSync(filePath, "utf-8");
 
 	const baseName = content.match(/^name\s*=\s*"([^"]+)"/m)?.[1] ?? "app";
+	const previewName =
+		content.match(/\[env\.preview\][^[]*name\s*=\s*"([^"]+)"/s)?.[1] ?? `${baseName}-preview`;
 
 	const previewDb = {
 		name:
@@ -152,6 +154,7 @@ function parseWranglerToml(filePath: string) {
 
 	return {
 		baseName,
+		previewName,
 		previewDb,
 		productionDb,
 		previewEmailSender,
@@ -172,6 +175,7 @@ function parseWranglerToml(filePath: string) {
 export default defineConfig(({ mode }) => {
 	const {
 		baseName,
+		previewName,
 		previewDb,
 		productionDb,
 		previewEmailSender,
@@ -201,7 +205,7 @@ export default defineConfig(({ mode }) => {
 	const configCustomizer =
 		mode === "preview"
 			? (cfg: WorkerConfig): void => {
-					cfg.name = baseName;
+					cfg.name = previewName;
 					cfg.vars = previewVars ?? { ENVIRONMENT: "preview", EMAIL_PROVIDER: "cloudflare" };
 					cfg.d1_databases = [
 						{
