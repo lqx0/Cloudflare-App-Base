@@ -61,5 +61,5 @@ Status: `[ ]` not started, `[-]` in progress, `[x]` completed, `[!]` blocked.
 
 Values still requiring separate approval and provider configuration:
 
-- `.env.preview` `APP_BASE_URL`/`CLI_API_URL_PREVIEW` using `https://adaptquiz.lqixv.workers.dev`;
+- `.env.preview` `APP_BASE_URL`/`CLI_API_URL_PREVIEW` using `https://adaptquiz.tom0.workers.dev`;
 - Preview `EMAIL_API_KEY`, `RECRUIT_QUIZ_RECIPIENT_EMAIL`, `CLI_API_KEY`, and any OAuth credentials, only after their respective configuration is authorized.

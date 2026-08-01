@@ -35,7 +35,7 @@ workers_dev = true
 ENVIRONMENT = "preview"
 EMAIL_PROVIDER = "resend"
 AUTH_EMAILS_LOCAL_ENABLED = "false"
-APP_BASE_URL = "https://adaptquiz.lqixv.workers.dev"
+APP_BASE_URL = "https://adaptquiz.tom0.workers.dev"
 AUTH_EMAILS_ENABLED = "false"
 
 [[env.preview.d1_databases]]

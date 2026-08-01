@@ -116,6 +116,6 @@ The only remote environment is a non-production test environment. Repository scr
 - D1 name: `adaptquiz`;
 - email provider: `resend`;
 - D1 ID: `62af6701-0b32-48b8-a176-c8112de967f7`;
-- application URL: `https://adaptquiz.lqixv.workers.dev`.
+- application URL: `https://adaptquiz.tom0.workers.dev`.
 
 `bin/preview-remote-config.ts` remains a fail-closed preflight. Remote-test deployment, secret synchronization, and D1 commands stop before invoking Wrangler when the D1 ID is not a real UUID, when the URL is not the `adaptquiz.<account>.workers.dev` URL, or when shared base resource names reappear. The checked-in Production placeholders are intentionally unused; Production commands remain outside the project scope.

@@ -61,5 +61,5 @@
 
 仍需另行审批和配置的字段：
 
-- 在 `.env.preview` 中使用 `https://adaptquiz.lqixv.workers.dev` 填写 `APP_BASE_URL`／`CLI_API_URL_PREVIEW`；
+- 在 `.env.preview` 中使用 `https://adaptquiz.tom0.workers.dev` 填写 `APP_BASE_URL`／`CLI_API_URL_PREVIEW`；
 - 只有对应配置获得授权后，才能填写 Preview `EMAIL_API_KEY`、`RECRUIT_QUIZ_RECIPIENT_EMAIL`、`CLI_API_KEY` 和任何 OAuth 凭据。

@@ -116,6 +116,6 @@ D1 只新增 `quiz_questions`：
 - D1 名称：`adaptquiz`；
 - 邮件 Provider：`resend`；
 - D1 ID：`62af6701-0b32-48b8-a176-c8112de967f7`；
-- 应用 URL：`https://adaptquiz.lqixv.workers.dev`。
+- 应用 URL：`https://adaptquiz.tom0.workers.dev`。
 
 `bin/preview-remote-config.ts` 继续作为 fail-closed 前置门禁。D1 ID 不是实际 UUID、URL 不是 `adaptquiz.<account>.workers.dev`，或配置重新引用共享基础资源时，远程测试部署、Secret 同步和 D1 命令都会在调用 Wrangler 前停止。仓库中的 Production 占位配置明确不使用，Production 命令不在本项目范围内。

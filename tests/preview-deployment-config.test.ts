@@ -24,6 +24,10 @@ test("preview configuration targets isolated aDaptQuiz resources", async () => {
 	);
 	assert.match(
 		wranglerConfig,
+		/\[env\.preview\.vars\][\s\S]*APP_BASE_URL\s*=\s*"https:\/\/adaptquiz\.tom0\.workers\.dev"/,
+	);
+	assert.match(
+		wranglerConfig,
 		/\[\[env\.preview\.d1_databases\]\][\s\S]*database_name\s*=\s*"adaptquiz"/,
 	);
 	assert.doesNotMatch(wranglerConfig, /cloudflare-ankit-preview/);
