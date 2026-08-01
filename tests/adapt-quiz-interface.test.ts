@@ -75,6 +75,13 @@ test("Question form uses the shared Select for a true-false answer", async () =>
 	assert.match(form, /<SelectItem value="false">False<\/SelectItem>/);
 });
 
+test("Question form gives only written responses a larger answer textarea", async () => {
+	const form = await readFile("src/react-app/features/admin/components/QuestionForm.tsx", "utf8");
+	assert.match(form, /type === "free_text"/);
+	assert.match(form, /<Textarea id="correct-answer".*className="min-h-32"/);
+	assert.match(form, /<Input id="correct-answer"/);
+});
+
 test("Question list shows count and an explicit empty state", async () => {
 	const list = await readFile("src/react-app/features/admin/components/QuestionList.tsx", "utf8");
 	assert.match(list, /questions\.length/);

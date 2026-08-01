@@ -71,7 +71,11 @@ export function QuestionForm({ onCreated }: { onCreated(question: AdminQuestion)
 				) : (
 					<div className="space-y-2">
 						<label htmlFor="correct-answer" className="text-sm font-medium">{type === "free_text" ? "Reference answer / Evaluation guidance" : "Correct answer"}</label>
-						<Input id="correct-answer" value={correctAnswer} onChange={(event) => setCorrect(event.target.value)} required />
+						{type === "free_text" ? (
+							<Textarea id="correct-answer" value={correctAnswer} onChange={(event) => setCorrect(event.target.value)} required className="min-h-32" />
+						) : (
+							<Input id="correct-answer" value={correctAnswer} onChange={(event) => setCorrect(event.target.value)} required />
+						)}
 						{type === "free_text" && <p className="text-sm text-muted-foreground">Provide a reference answer or evaluation guidance; this prototype does not score written responses.</p>}
 					</div>
 				)}
