@@ -109,3 +109,12 @@ The status endpoint reports delivery available only when all configuration is us
 ## 10. Environment boundary
 
 Local implementation and tests do not connect to remote resources by default. GoDaddy DNS, Resend, remote secrets, and deployment require separate later authorization. Do not modify legacy Workers or D1 databases.
+
+The independent Preview is reserved as follows:
+
+- Worker name: `adaptquiz-preview`;
+- D1 name: `adaptquiz-preview`;
+- email provider: `resend`;
+- D1 ID and `APP_BASE_URL`: explicit unresolved markers until Cloudflare creates the resources and reports the real values.
+
+`bin/preview-remote-config.ts` is a fail-closed preflight. Preview deployment, Preview secret synchronization, and Preview D1 commands stop before invoking Wrangler while either marker remains, when the ID is not a real UUID, when the URL is not the `adaptquiz-preview.<account>.workers.dev` URL, or when shared base resource names reappear. After separately authorized resource creation, copy the real D1 UUID into `wrangler.toml`, copy the real Worker URL into `wrangler.toml` and `.env.preview`, then run the preflight locally before requesting approval for any remote migration, secret synchronization, or deployment.

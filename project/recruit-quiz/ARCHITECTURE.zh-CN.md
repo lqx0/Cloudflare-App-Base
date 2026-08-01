@@ -109,3 +109,12 @@ D1 只新增 `quiz_questions`：
 ## 10. 环境边界
 
 本地实现和测试不得默认连接远程资源。GoDaddy DNS、Resend、远程 Secret 和部署需要后续独立授权。不得修改 legacy Worker/D1。
+
+独立 Preview 暂定配置如下：
+
+- Worker 名称：`adaptquiz-preview`；
+- D1 名称：`adaptquiz-preview`；
+- 邮件 Provider：`resend`；
+- D1 ID 与 `APP_BASE_URL`：在 Cloudflare 创建资源并返回真实值前，保留明确的未解析标记。
+
+`bin/preview-remote-config.ts` 是 fail-closed 前置门禁。只要任一标记尚未替换、D1 ID 不是实际 UUID、URL 不是 `adaptquiz-preview.<account>.workers.dev`，或配置重新引用共享基础资源，Preview 部署、Preview Secret 同步和 Preview D1 命令都会在调用 Wrangler 前停止。后续获得独立资源创建授权并完成创建后，把真实 D1 UUID 填入 `wrangler.toml`，把真实 Worker URL 同时填入 `wrangler.toml` 与 `.env.preview`，先在本地运行门禁，再另行申请远程迁移、Secret 同步或部署授权。

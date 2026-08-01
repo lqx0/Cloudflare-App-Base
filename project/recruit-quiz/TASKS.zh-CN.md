@@ -50,9 +50,16 @@
 
 ## 远程启用，必须另行授权
 
+- [x] 准备独立 Preview 本地名称、未解析标记、Resend 选择和 fail-closed 远程前置门禁。
 - [ ] 创建或配置 Resend 账户和受限 API Key。
 - [ ] 在 GoDaddy 为 `mail.fitoa.net` 添加 Resend DNS 记录。
 - [ ] 配置目标环境发件地址、收件地址和 Secret。
 - [ ] 部署项目专属 Worker/D1 并执行项目迁移。
 - [ ] 使用测试账号验证真实邮件。
 - [ ] 推送远程分支。
+
+仍需另行审批并由真实 Provider 返回的字段：
+
+- Cloudflare 创建 `adaptquiz-preview` 后返回的 `wrangler.toml` Preview D1 `database_id`；
+- 使用真实 `adaptquiz-preview.<account>.workers.dev` URL 填写 `wrangler.toml` 与 `.env.preview` 的 `APP_BASE_URL`／`CLI_API_URL_PREVIEW`；
+- 只有对应配置获得授权后，才能填写 Preview `EMAIL_API_KEY`、`RECRUIT_QUIZ_RECIPIENT_EMAIL`、`CLI_API_KEY` 和任何 OAuth 凭据。
