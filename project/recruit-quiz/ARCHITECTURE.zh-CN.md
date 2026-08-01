@@ -110,11 +110,12 @@ D1 只新增 `quiz_questions`：
 
 本地实现和测试不得默认连接远程资源。GoDaddy DNS、Resend、远程 Secret 和部署需要后续独立授权。不得修改 legacy Worker/D1。
 
-独立 Preview 暂定配置如下：
+唯一远程环境是非正式上线的测试环境。仓库脚本仍使用 `preview` 作为命令标签，但不会另建 Production 资源：
 
-- Worker 名称：`adaptquiz-preview`；
-- D1 名称：`adaptquiz-preview`；
+- Worker 名称：`adaptquiz`；
+- D1 名称：`adaptquiz`；
 - 邮件 Provider：`resend`；
-- D1 ID 与 `APP_BASE_URL`：在 Cloudflare 创建资源并返回真实值前，保留明确的未解析标记。
+- D1 ID：`62af6701-0b32-48b8-a176-c8112de967f7`；
+- 应用 URL：`https://adaptquiz.lqixv.workers.dev`。
 
-`bin/preview-remote-config.ts` 是 fail-closed 前置门禁。只要任一标记尚未替换、D1 ID 不是实际 UUID、URL 不是 `adaptquiz-preview.<account>.workers.dev`，或配置重新引用共享基础资源，Preview 部署、Preview Secret 同步和 Preview D1 命令都会在调用 Wrangler 前停止。后续获得独立资源创建授权并完成创建后，把真实 D1 UUID 填入 `wrangler.toml`，把真实 Worker URL 同时填入 `wrangler.toml` 与 `.env.preview`，先在本地运行门禁，再另行申请远程迁移、Secret 同步或部署授权。
+`bin/preview-remote-config.ts` 继续作为 fail-closed 前置门禁。D1 ID 不是实际 UUID、URL 不是 `adaptquiz.<account>.workers.dev`，或配置重新引用共享基础资源时，远程测试部署、Secret 同步和 D1 命令都会在调用 Wrangler 前停止。仓库中的 Production 占位配置明确不使用，Production 命令不在本项目范围内。

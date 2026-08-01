@@ -110,11 +110,12 @@ The status endpoint reports delivery available only when all configuration is us
 
 Local implementation and tests do not connect to remote resources by default. GoDaddy DNS, Resend, remote secrets, and deployment require separate later authorization. Do not modify legacy Workers or D1 databases.
 
-The independent Preview is reserved as follows:
+The only remote environment is a non-production test environment. Repository scripts continue to call it `preview`, but no separate Production resource will be created:
 
-- Worker name: `adaptquiz-preview`;
-- D1 name: `adaptquiz-preview`;
+- Worker name: `adaptquiz`;
+- D1 name: `adaptquiz`;
 - email provider: `resend`;
-- D1 ID and `APP_BASE_URL`: explicit unresolved markers until Cloudflare creates the resources and reports the real values.
+- D1 ID: `62af6701-0b32-48b8-a176-c8112de967f7`;
+- application URL: `https://adaptquiz.lqixv.workers.dev`.
 
-`bin/preview-remote-config.ts` is a fail-closed preflight. Preview deployment, Preview secret synchronization, and Preview D1 commands stop before invoking Wrangler while either marker remains, when the ID is not a real UUID, when the URL is not the `adaptquiz-preview.<account>.workers.dev` URL, or when shared base resource names reappear. After separately authorized resource creation, copy the real D1 UUID into `wrangler.toml`, copy the real Worker URL into `wrangler.toml` and `.env.preview`, then run the preflight locally before requesting approval for any remote migration, secret synchronization, or deployment.
+`bin/preview-remote-config.ts` remains a fail-closed preflight. Remote-test deployment, secret synchronization, and D1 commands stop before invoking Wrangler when the D1 ID is not a real UUID, when the URL is not the `adaptquiz.<account>.workers.dev` URL, or when shared base resource names reappear. The checked-in Production placeholders are intentionally unused; Production commands remain outside the project scope.

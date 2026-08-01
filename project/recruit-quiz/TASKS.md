@@ -50,16 +50,15 @@ Status: `[ ]` not started, `[-]` in progress, `[x]` completed, `[!]` blocked.
 
 ## Remote enablement, separately authorized
 
-- [x] Prepare isolated local Preview names, unresolved markers, Resend selection, and fail-closed remote preflight.
+- [x] Configure the single remote test target as `adaptquiz`, record its D1 ID, select Resend, and retain the fail-closed remote preflight.
 - [ ] Create or configure a Resend account and restricted API key.
 - [ ] Add Resend DNS records for `mail.fitoa.net` in GoDaddy.
 - [ ] Configure the target environment's sender, recipient, and secrets.
-- [ ] Deploy project-specific Worker/D1 resources and apply project migrations.
+- [ ] Deploy the `adaptquiz` test Worker and apply project migrations to the existing `adaptquiz` D1.
 - [ ] Verify real delivery with a test account.
 - [ ] Push the remote branch.
 
-Values still requiring separate approval and real provider output:
+Values still requiring separate approval and provider configuration:
 
-- `wrangler.toml` Preview D1 `database_id` returned by Cloudflare after creating `adaptquiz-preview`;
-- `wrangler.toml` and `.env.preview` `APP_BASE_URL`/`CLI_API_URL_PREVIEW` using the real `adaptquiz-preview.<account>.workers.dev` URL;
+- `.env.preview` `APP_BASE_URL`/`CLI_API_URL_PREVIEW` using `https://adaptquiz.lqixv.workers.dev`;
 - Preview `EMAIL_API_KEY`, `RECRUIT_QUIZ_RECIPIENT_EMAIL`, `CLI_API_KEY`, and any OAuth credentials, only after their respective configuration is authorized.

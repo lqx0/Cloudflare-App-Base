@@ -206,7 +206,7 @@ The Worker enforces administrator access using the current user ID and `users.ro
 - Sending is allowed only when configuration is complete, and success or failure follows the real provider result.
 - Every administrator endpoint has server-side role enforcement.
 - Implementation starts with failing tests and minimal code, then finishes with the full test suite, lint, type checking, and build.
-- Preview configuration uses the independent `adaptquiz-preview` Worker and D1 and fails before any remote action until their real D1 UUID and workers.dev URL replace the checked-in markers.
+- The repository's Preview command path targets the single non-production `adaptquiz` Worker and D1; its preflight rejects invalid IDs, invalid URLs, and shared base resources before remote actions.
 
 ## 13. Approved English page copy
 
