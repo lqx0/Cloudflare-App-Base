@@ -6,6 +6,7 @@ import {
   termsSections,
 } from "@/content/legal";
 import { Button } from "@/components/ui/button";
+import { jobDetails, productCopy } from "@/content/adapt-quiz";
 
 function Page({ title, children }: { title: string; children: ReactNode }) {
   return (
@@ -36,25 +37,22 @@ function LegalSample({ sections }: { sections: typeof privacySections }) {
 
 export function PublicHome() {
   return (
-    <Page title="A reusable Cloudflare application foundation.">
-      <p className="text-sm font-medium text-primary">Cloudflare-App-Base</p>
-      <p className="text-lg">
-        Start new full-stack projects with authentication, D1, email adapters,
-        environment tooling, and a tested shared layout already in place.
-      </p>
+    <Page title="Practice clearly. Share only when you choose.">
+      <p className="text-sm font-medium text-primary">{productCopy.name}</p>
+      <p className="text-lg">{productCopy.prototypeStatement}</p>
       <div className="flex gap-3 pt-2">
         <Button asChild>
-          <Link to="/services">Explore capabilities</Link>
+          <Link to="/quiz">Start a quiz</Link>
         </Button>
         <Button asChild variant="outline">
-          <Link to="/about">About the base</Link>
+          <a href={jobDetails.sourceUrl} target="_blank" rel="noreferrer">View the SJS source</a>
         </Button>
       </div>
       <section className="mt-12 max-w-2xl rounded-xl border border-primary/30 bg-primary/5 p-6 text-sm text-muted-foreground shadow-sm">
-        <p className="inline-flex rounded-full bg-primary px-3 py-1 text-xs font-semibold text-primary-foreground">REUSABLE FOUNDATION</p>
-        <h2 className="mt-3 text-2xl font-semibold text-foreground">Build project requirements on a stable base</h2>
-        <p className="mt-3">Create a <strong className="font-semibold text-foreground">project/&lt;name&gt;</strong> branch for client branding, business pages, data models, privacy rules, and isolated Cloudflare resources.</p>
-        <p className="mt-3">Keep reusable security, authentication, database, email, CLI, testing, and deployment-readiness improvements on <strong className="font-semibold text-foreground">main</strong>.</p>
+        <p className="inline-flex rounded-full bg-primary px-3 py-1 text-xs font-semibold text-primary-foreground">PROTOTYPE</p>
+        <h2 className="mt-3 text-2xl font-semibold text-foreground">{jobDetails.company} — {jobDetails.role}</h2>
+        <p className="mt-3">Reference {jobDetails.reference} · {jobDetails.location} · {jobDetails.pay} · {jobDetails.hours} · {jobDetails.workArrangement}.</p>
+        <p className="mt-3">This independently prepared prototype is not presented as an official release or endorsement by the advertiser.</p>
       </section>
     </Page>
   );

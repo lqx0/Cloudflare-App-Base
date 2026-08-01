@@ -1,22 +1,22 @@
 export const draftLegalNotice =
-  "Draft sample — requires owner and legal review before publication.";
+  "Prototype privacy information — final legal review is required before production publication.";
 
 export const privacySections = [
   {
-    title: "Information we collect",
-    body: "This sample describes account information such as your name, email address, optional profile image, and technical data needed for authentication and sessions.",
+    title: "Quiz data in this prototype",
+    body: "Quiz progress, answers, and results stay only in current browser page memory and are not saved. Refreshing, closing, or leaving the page ends the round.",
   },
   {
-    title: "How information is used",
-    body: "Information is used for account operation, security, support, and necessary service communications.",
+    title: "Actively sent copies",
+    body: "Only when you actively confirm Send a copy do we transfer your account name and email, questions, answers, reference answers, and send time through Resend to the configured administrator mailbox.",
   },
   {
-    title: "Retention",
-    body: "Account information is retained until authorized deletion, a valid privacy or legal request, or an approved policy change.",
+    title: "Administrator visibility",
+    body: "Administrators cannot view self-test results that you do not send. The current application stores no submitted-copy list; administrators review actively sent copies only in the configured mailbox.",
   },
   {
-    title: "Your requests",
-    body: "Each project must publish a project-specific privacy contact for access, correction, or deletion requests.",
+    title: "Production version",
+    body: "The production version will retain completed quizzes and provide user history plus an in-app view of copies users actively submit, subject to a reviewed retention policy.",
   },
 ];
 

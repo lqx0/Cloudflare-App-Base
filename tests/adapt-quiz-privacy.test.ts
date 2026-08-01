@@ -1,0 +1,2 @@
+import assert from "node:assert/strict"; import test from "node:test"; import { privacySections } from "../src/react-app/content/legal";
+test("privacy distinguishes self-test memory from actively sent copies",()=>{const text=privacySections.map(x=>x.body).join(" ");assert.match(text,/current browser page memory/);assert.match(text,/actively confirm/);assert.match(text,/administrator/);assert.match(text,/production version/);});

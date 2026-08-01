@@ -5,8 +5,6 @@ import { publicNavigation } from "../src/react-app/lib/public-navigation";
 test("exposes the approved public navigation routes", () => {
 	assert.deepEqual(publicNavigation, [
 		{ href: "/", label: "Home" },
-		{ href: "/about", label: "About" },
-		{ href: "/services", label: "Services" },
-		{ href: "/contact", label: "Contact" },
+		{ href: "/quiz", label: "Quiz" },
 	]);
 });

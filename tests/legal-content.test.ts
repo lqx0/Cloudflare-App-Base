@@ -6,16 +6,16 @@ import {
   termsSections,
 } from "../src/react-app/content/legal";
 
-test("legal sample content states its draft status without a client contact", () => {
+test("privacy content states the aDaptQuiz disclosure boundary", () => {
   assert.equal(
     draftLegalNotice,
-    "Draft sample — requires owner and legal review before publication.",
+    "Prototype privacy information — final legal review is required before production publication.",
   );
   assert.ok(
-    privacySections.some(({ body }) => body.includes("project-specific privacy contact")),
+    privacySections.some(({ body }) => body.includes("not saved")),
   );
   assert.ok(
-    privacySections.some(({ body }) => body.includes("authorized deletion")),
+    privacySections.some(({ body }) => body.includes("Resend")),
   );
   assert.ok(termsSections.some(({ body }) => body.includes("provisional")));
 });

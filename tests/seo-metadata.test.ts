@@ -9,11 +9,13 @@ test("returns canonical metadata for the public home route", () => {
 
   assert.equal(metadata.canonicalPath, "/");
   assert.equal(metadata.indexable, true);
-  assert.match(metadata.title, /Cloudflare-App-Base/);
+  assert.match(metadata.title, /aDaptQuiz/);
 });
 
 test("marks account and unknown routes as noindex", () => {
   assert.equal(getSeoMetadata("/account").indexable, false);
+  assert.equal(getSeoMetadata("/quiz").indexable, false);
+  assert.equal(getSeoMetadata("/admin/questions").indexable, false);
   assert.equal(getSeoMetadata("/missing").indexable, false);
 });
 

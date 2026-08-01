@@ -98,7 +98,7 @@ export function createAuth(c: AppContext) {
 			db,
 			type: "sqlite",
 		},
-		user: { modelName: "users" },
+		user: { modelName: "users", additionalFields: { role: { type: "string", required: false, defaultValue: "user", input: false } } },
 		session: {
 			modelName: "sessions",
 			expiresIn: 60 * 60 * 24 * 7,

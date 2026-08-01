@@ -10,9 +10,9 @@ export type SeoMetadata = {
 
 const routeMetadata: Record<string, SeoMetadata> = {
   "/": {
-    title: "Cloudflare-App-Base | Reusable application foundation",
+    title: "aDaptQuiz | Private self-test prototype",
     description:
-      "A reusable full-stack application foundation for projects running on Cloudflare.",
+      "An English-language question-bank and private self-test prototype.",
     canonicalPath: "/",
     indexable: true,
   },
@@ -54,8 +54,8 @@ const routeMetadata: Record<string, SeoMetadata> = {
 };
 
 const notFoundMetadata: SeoMetadata = {
-  title: "Page not found | Cloudflare-App-Base",
-  description: "The requested Cloudflare-App-Base page could not be found.",
+  title: "Page not found | aDaptQuiz",
+  description: "The requested aDaptQuiz page could not be found.",
   canonicalPath: "/",
   indexable: false,
 };
