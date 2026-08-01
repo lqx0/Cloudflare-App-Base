@@ -58,3 +58,8 @@ test("Question list shows count and an explicit empty state", async () => {
 	assert.match(list, /No questions yet/);
 	assert.match(list, /Add your first question/);
 });
+
+test("Question list explains that production will provide management controls", async () => {
+	const list = await readFile("src/react-app/features/admin/components/QuestionList.tsx", "utf8");
+	assert.match(list, /Question editing, deletion, and availability controls will be implemented in the production version\./);
+});

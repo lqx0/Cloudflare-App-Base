@@ -33,6 +33,7 @@ export function QuestionList({ questions }: { questions: AdminQuestion[] }) {
 					))}
 				</ul>
 			)}
+			<p className="mt-4 text-sm text-muted-foreground">Question editing, deletion, and availability controls will be implemented in the production version.</p>
 		</section>
 	);
 }
