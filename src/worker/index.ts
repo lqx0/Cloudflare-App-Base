@@ -10,6 +10,7 @@ import { securityHeaders } from "./middleware/security";
 import { adminMiddleware } from "./middleware/admin";
 import { createQuestionRepository } from "./quiz/repository";
 import { createAdminQuestionRoutes } from "./quiz/admin-routes";
+import { createQuizRoutes } from "./quiz/routes";
 
 const app = new Hono<AppBindings>();
 app.use("*", securityHeaders);
@@ -398,6 +399,8 @@ app.get("/api/protected/ping", authMiddleware, (c) => {
 
 app.use("/api/admin/*", authMiddleware, adminMiddleware);
 app.route("/api/admin", createAdminQuestionRoutes((env) => createQuestionRepository(new Kysely<Database>({ dialect: new D1Dialect({ database: env.DB }) }))));
+app.use("/api/quiz/*", authMiddleware);
+app.route("/api/quiz", createQuizRoutes((env) => createQuestionRepository(new Kysely<Database>({ dialect: new D1Dialect({ database: env.DB }) }))));
 
 // Profile deletion endpoint (authenticated users can delete their own account)
 app.delete("/api/profile", authMiddleware, async (c) => {
