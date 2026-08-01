@@ -7,6 +7,9 @@ import type { Database } from "./types/database";
 import type { AppBindings, AppContext } from "./types/context";
 import { authMiddleware, handleAuthRequest, isGoogleOAuthEnabled } from "./middleware/auth";
 import { securityHeaders } from "./middleware/security";
+import { adminMiddleware } from "./middleware/admin";
+import { createQuestionRepository } from "./quiz/repository";
+import { createAdminQuestionRoutes } from "./quiz/admin-routes";
 
 const app = new Hono<AppBindings>();
 app.use("*", securityHeaders);
@@ -392,6 +395,9 @@ app.get("/api/protected/ping", authMiddleware, (c) => {
 	const user = c.get("user");
 	return c.json({ ok: true, user });
 });
+
+app.use("/api/admin/*", authMiddleware, adminMiddleware);
+app.route("/api/admin", createAdminQuestionRoutes((env) => createQuestionRepository(new Kysely<Database>({ dialect: new D1Dialect({ database: env.DB }) }))));
 
 // Profile deletion endpoint (authenticated users can delete their own account)
 app.delete("/api/profile", authMiddleware, async (c) => {
