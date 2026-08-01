@@ -1,4 +1,4 @@
-name = "cloudflare-ankit"
+name = "cloudflare-app-base"
 main = "./src/worker/index.ts"
 compatibility_date = "2025-04-01"
 compatibility_flags = ["nodejs_compat"]
@@ -25,22 +25,23 @@ remote = true
 
 [[d1_databases]]
 binding = "DB"
-database_name = "cloudflare-ankit"
+database_name = "cloudflare-app-base"
 database_id = "local"
 
 [env.preview]
+name = "cloudflare-app-base"
 workers_dev = true
 [env.preview.vars]
 ENVIRONMENT = "preview"
 EMAIL_PROVIDER = "cloudflare"
 AUTH_EMAILS_LOCAL_ENABLED = "false"
-APP_BASE_URL = "https://cloudflare-ankit-preview.lqixv.workers.dev"
+APP_BASE_URL = "https://cloudflare-app-base.lqixv.workers.dev"
 AUTH_EMAILS_ENABLED = "false"
 
 [[env.preview.d1_databases]]
 binding = "DB"
-database_name = "cloudflare-ankit-preview"
-database_id = "4be0bafc-31d0-4892-985c-a96d6207db4e"
+database_name = "cloudflare-app-base"
+database_id = "bec0fc22-f142-4b65-9fcd-748d67d9e223"
 
 [[env.preview.send_email]]
 name = "SEND_EMAIL"
@@ -53,7 +54,7 @@ EMAIL_PROVIDER = "cloudflare"
 
 [[env.production.d1_databases]]
 binding = "DB"
-database_name = "cloudflare-ankit"
+database_name = "cloudflare-app-base"
 database_id = "YOUR_PRODUCTION_D1_DATABASE_ID"
 
 [[env.production.send_email]]

@@ -36,7 +36,7 @@ Reusable fixes may return to `main`; changes containing client names, domains, b
 
 Preserve local, preview, and production environments. Local must not connect to remote resources by default. Worker, D1, secret, OAuth, DNS, and email configuration must use project-owned names and require explicit target-environment authorization before modification.
 
-Legacy remote resource identifiers in `wrangler.toml` remain temporarily to prevent a documentation rename from accidentally modifying deployed resources. A new project must define its migration plan on its own branch.
+The `main` Preview uses an independent `cloudflare-app-base` Worker and same-named D1; the legacy Cloudflare-Ankit Worker/D1 remain unchanged. Each new project must define independent resource names and its migration plan on its own branch.
 
 ## 5. Documentation and branches
 

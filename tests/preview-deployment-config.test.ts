@@ -11,13 +11,24 @@ test("preview deployment builds with the Cloudflare preview environment and depl
 	assert.match(packageJson.scripts["deploy:preview"], /wrangler deploy --env preview/);
 });
 
-test("preview configuration uses the deployed workers.dev origin for Better Auth", async () => {
-	const wranglerConfig = await readFile("wrangler.toml", "utf8");
+test("preview configuration targets the standalone Cloudflare App Base resources", async () => {
+	const [wranglerConfig, viteConfig] = await Promise.all([
+		readFile("wrangler.toml", "utf8"),
+		readFile("vite.config.ts", "utf8"),
+	]);
 
+	assert.match(wranglerConfig, /\[env\.preview\][\s\S]*name\s*=\s*"cloudflare-app-base"/);
 	assert.match(
 		wranglerConfig,
-		/\[env\.preview\.vars\][\s\S]*APP_BASE_URL\s*=\s*"https:\/\/cloudflare-ankit-preview\.lqixv\.workers\.dev"/,
+		/\[env\.preview\.vars\][\s\S]*APP_BASE_URL\s*=\s*"https:\/\/cloudflare-app-base\.lqixv\.workers\.dev"/,
 	);
+	assert.match(
+		wranglerConfig,
+		/\[\[env\.preview\.d1_databases\]\][\s\S]*database_name\s*=\s*"cloudflare-app-base"/,
+	);
+	assert.doesNotMatch(wranglerConfig, /cloudflare-ankit-preview/);
+	assert.match(viteConfig, /mode === "preview"[\s\S]*?cfg\.name = baseName;/);
+	assert.doesNotMatch(viteConfig, /mode === "preview"[\s\S]*?cfg\.name = `\$\{baseName\}-preview`/);
 });
 
 test("preview disables email verification until a usable mail sender is configured", async () => {

@@ -201,7 +201,7 @@ export default defineConfig(({ mode }) => {
 	const configCustomizer =
 		mode === "preview"
 			? (cfg: WorkerConfig): void => {
-					cfg.name = `${baseName}-preview`;
+					cfg.name = baseName;
 					cfg.vars = previewVars ?? { ENVIRONMENT: "preview", EMAIL_PROVIDER: "cloudflare" };
 					cfg.d1_databases = [
 						{

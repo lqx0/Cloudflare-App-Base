@@ -36,7 +36,7 @@ Cloudflare Worker + Static Assets
 
 保留 Local、Preview 和 Production。Local 不得默认连接远程资源。Worker、D1、Secret、OAuth、DNS 和邮件配置必须使用项目自己的名称，并获得具体环境授权后才能修改。
 
-现有 `wrangler.toml` 中的旧远程资源标识暂时保留，以避免一次文档改名意外修改已部署资源；新项目必须在自己的分支明确迁移计划。
+`main` 的 Preview 使用独立的 `cloudflare-app-base` Worker 和同名 D1；旧 Cloudflare-Ankit Worker/D1 保持不变。新项目必须在自己的分支定义独立资源名和迁移计划。
 
 ## 5. 文档与分支
 

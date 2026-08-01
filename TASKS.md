@@ -19,16 +19,17 @@ Status: `[ ]` not started, `[-]` in progress, `[x]` completed, `[!]` blocked.
 - [x] Define responsibilities for `main`, `project/<name>`, and `archive/<name>-<date>`.
 - [x] Convert README, SPEC, ARCHITECTURE, and TASKS into neutral base documentation.
 - [x] Rename the local application and package identity to Cloudflare-App-Base.
-- [x] Preserve legacy remote Worker/D1 identifiers to avoid an unauthorized resource migration.
+- [x] Establish an independent `cloudflare-app-base` Preview Worker and D1 while leaving the legacy Worker/D1 unchanged.
 - [x] Run tests, lint, and build, review the diff, then commit and push.
 
 ## Future base tasks
 
-- [ ] Evaluate renaming the GitHub repository to `Cloudflare-App-Base` after separate approval.
+- [x] Rename the GitHub repository to `Cloudflare-App-Base`.
 - [ ] Provide a checklist or script for creating a project from `main`.
 - [ ] Replace public demonstration pages with fully neutral base examples.
 - [ ] Document remote-resource renaming and isolation for project branches.
 - [ ] Define the process for moving mature projects into independent repositories.
+- [ ] Configure the legacy Worker deployment for the `legacy/cloudflare-ankit` branch.
 
 ## Required for every project branch
 

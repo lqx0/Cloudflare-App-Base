@@ -19,16 +19,17 @@
 - [x] 定义 `main`、`project/<name>` 和 `archive/<name>-<date>` 分支职责。
 - [x] 将 README、SPEC、ARCHITECTURE 和 TASKS 改为中立基础文档。
 - [x] 将本地应用和包身份改为 Cloudflare-App-Base。
-- [x] 保留旧远程 Worker/D1 标识，避免未授权资源迁移。
+- [x] 建立独立的 `cloudflare-app-base` Preview Worker 和 D1，保留旧 Worker/D1 不变。
 - [x] 运行测试、Lint 和 Build，审查差异并提交推送。
 
 ## 后续基础任务
 
-- [ ] 在单独批准后评估 GitHub 仓库重命名为 `Cloudflare-App-Base`。
+- [x] 将 GitHub 仓库重命名为 `Cloudflare-App-Base`。
 - [ ] 为从 `main` 创建新项目提供检查清单或脚本。
 - [ ] 将公开演示页面改为完全中立的基础示例。
 - [ ] 为项目分支提供远程资源重命名和隔离指南。
 - [ ] 评估将成熟项目迁移为独立仓库的流程。
+- [ ] 为旧 `legacy/cloudflare-ankit` 分支配置旧 Worker 自动部署。
 
 ## 每个项目分支必须完成
 
