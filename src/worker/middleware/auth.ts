@@ -7,23 +7,9 @@ import type { AppContext, AppUser } from "../types/context";
 import { createEmailSender, type EmailSender } from "../utils/email";
 import { getVerificationEmailTemplate, getPasswordResetEmailTemplate } from "../utils/email-templates";
 import { config } from "../../config";
+import { getAuthBaseURL, type AuthEnvironment } from "./auth-base-url";
 
-type Environment = "local" | "preview" | "production" | "test";
-
-function getBaseURL(c: AppContext, environment: Environment): string {
-	if (c.env.APP_BASE_URL) return c.env.APP_BASE_URL;
-
-	switch (environment) {
-		case "local":
-			return "http://localhost:5173";
-		case "preview":
-			return "https://preview.example.com";
-		case "production":
-			return "https://app.example.com";
-		default:
-			return "http://localhost:5173";
-	}
-}
+type Environment = AuthEnvironment;
 
 function isEnabled(value?: string): boolean {
 	return value === "true" || value === "1";
@@ -155,7 +141,7 @@ export function createAuth(c: AppContext) {
 		telemetry: {
 			enabled: false,
 		},
-		baseURL: getBaseURL(c, environment),
+		baseURL: getAuthBaseURL(c.req.url, environment, c.env.APP_BASE_URL),
 	});
 }
 
