@@ -10,6 +10,10 @@ test("builds escaped HTML and complete plain text", () => {
 	assert.match(email.html, /&lt;Tom&gt;/);
 	assert.match(email.text, /tom@example\.com/);
 	assert.match(email.text, /Reference/);
+	assert.match(email.html, /Quiz taker's answer:/);
+	assert.match(email.text, /Quiz taker's answer:/);
+	assert.doesNotMatch(email.html, /Your answer:/);
+	assert.doesNotMatch(email.text, /Your answer:/);
 });
 
 test("requires every Resend delivery setting", () => {

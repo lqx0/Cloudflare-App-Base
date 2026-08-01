@@ -18,8 +18,8 @@ function escapeHtml(value: string): string {
 export function buildQuizCopyEmail(input: { user: { name?: string | null; email: string }; results: QuizResult[]; sentAt: Date }) {
 	const name = input.user.name?.trim() || "User";
 	const time = input.sentAt.toISOString();
-	const textRows = input.results.map((result, index) => `Question ${index + 1}: ${result.prompt}\nYour answer: ${result.userAnswer}\nCorrect / reference answer: ${result.correctAnswer}`).join("\n\n");
-	const htmlRows = input.results.map((result, index) => `<section><h2>Question ${index + 1}</h2><p>${escapeHtml(result.prompt)}</p><p><strong>Your answer:</strong> ${escapeHtml(result.userAnswer)}</p><p><strong>Correct / reference answer:</strong> ${escapeHtml(result.correctAnswer)}</p></section>`).join("");
+	const textRows = input.results.map((result, index) => `Question ${index + 1}: ${result.prompt}\nQuiz taker's answer: ${result.userAnswer}\nCorrect / reference answer: ${result.correctAnswer}`).join("\n\n");
+	const htmlRows = input.results.map((result, index) => `<section><h2>Question ${index + 1}</h2><p>${escapeHtml(result.prompt)}</p><p><strong>Quiz taker's answer:</strong> ${escapeHtml(result.userAnswer)}</p><p><strong>Correct / reference answer:</strong> ${escapeHtml(result.correctAnswer)}</p></section>`).join("");
 	return {
 		subject: `aDaptQuiz response - ${name} - ${time}`,
 		text: `This copy was actively sent by the user.\n\nName: ${name}\nEmail: ${input.user.email}\nSent: ${time}\n\n${textRows}`,
