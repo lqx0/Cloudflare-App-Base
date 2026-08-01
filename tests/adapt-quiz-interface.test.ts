@@ -38,6 +38,20 @@ test("Question form exposes three accessible type selectors", async () => {
 	assert.match(selector, /Written response/);
 });
 
+test("Question type selector follows the radio-group keyboard model", async () => {
+	const selector = await readFile("src/react-app/features/admin/components/QuestionTypeSelector.tsx", "utf8");
+	assert.match(selector, /tabIndex=\{disabled \? -1 : value === type \? 0 : -1\}/);
+	assert.match(selector, /onKeyDown=/);
+	assert.match(selector, /ArrowLeft/);
+	assert.match(selector, /ArrowRight/);
+	assert.match(selector, /ArrowUp/);
+	assert.match(selector, /ArrowDown/);
+	assert.match(selector, /Home/);
+	assert.match(selector, /End/);
+	assert.match(selector, /buttonRefs\.current\[nextType\]\?\.focus\(\)/);
+	assert.match(selector, /if \(disabled\) return/);
+});
+
 test("Question list shows count and an explicit empty state", async () => {
 	const list = await readFile("src/react-app/features/admin/components/QuestionList.tsx", "utf8");
 	assert.match(list, /questions\.length/);
