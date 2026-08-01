@@ -9,3 +9,4 @@ async function api<T>(url: string, init?: RequestInit): Promise<T> {
 export const getQuizStatus = () => api<QuizStatus>("/api/quiz/status");
 export async function startQuizRound(): Promise<PublicQuizQuestion[]> { return (await api<{ questions: PublicQuizQuestion[] }>("/api/quiz/round", { method: "POST" })).questions; }
 export async function submitQuizRound(answers: RoundAnswer[]): Promise<QuizResult[]> { return (await api<{ results: QuizResult[] }>("/api/quiz/submit", { method: "POST", body: JSON.stringify({ answers }) })).results; }
+export async function sendQuizCopy(answers: RoundAnswer[]): Promise<void> { await api("/api/quiz/send-copy", { method: "POST", body: JSON.stringify({ answers }) }); }

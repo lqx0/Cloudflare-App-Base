@@ -1,11 +1,13 @@
 import type { QuizResult } from "./types";
+import type { EmailSender } from "../utils/email";
 
 type ReadinessEnv = { EMAIL_PROVIDER?: string; EMAIL_API_KEY?: string; RECRUIT_QUIZ_RECIPIENT_EMAIL?: string; fromAddress?: string };
 
 export function getQuizEmailReadiness(env: ReadinessEnv): boolean {
+	const usable = (value?: string) => Boolean(value?.trim() && !/^(placeholder|change-me|your-|example)/i.test(value.trim()));
 	return env.EMAIL_PROVIDER === "resend"
-		&& Boolean(env.EMAIL_API_KEY?.trim())
-		&& Boolean(env.RECRUIT_QUIZ_RECIPIENT_EMAIL?.trim())
+		&& usable(env.EMAIL_API_KEY)
+		&& usable(env.RECRUIT_QUIZ_RECIPIENT_EMAIL)
 		&& Boolean(env.fromAddress?.trim() && !env.fromAddress.endsWith("@example.com"));
 }
 
@@ -23,4 +25,8 @@ export function buildQuizCopyEmail(input: { user: { name?: string | null; email:
 		text: `This copy was actively sent by the user.\n\nName: ${name}\nEmail: ${input.user.email}\nSent: ${time}\n\n${textRows}`,
 		html: `<p>This copy was actively sent by the user.</p><p><strong>Name:</strong> ${escapeHtml(name)}<br><strong>Email:</strong> ${escapeHtml(input.user.email)}<br><strong>Sent:</strong> ${escapeHtml(time)}</p>${htmlRows}`,
 	};
+}
+
+export async function sendQuizCopy(input: { to: string; user: { name?: string | null; email: string }; results: QuizResult[]; sentAt: Date; sender: EmailSender }) {
+	return input.sender.sendEmail({ to: input.to, ...buildQuizCopyEmail(input) });
 }

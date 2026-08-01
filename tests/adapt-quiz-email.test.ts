@@ -1,6 +1,6 @@
 import assert from "node:assert/strict";
 import test from "node:test";
-import { buildQuizCopyEmail, getQuizEmailReadiness } from "../src/worker/quiz/email";
+import { buildQuizCopyEmail, getQuizEmailReadiness, sendQuizCopy } from "../src/worker/quiz/email";
 
 const results = [{ id: "f", type: "free_text" as const, prompt: "<Explain>", options: null, userAnswer: "<Mine>", correctAnswer: "Reference" }];
 
@@ -16,4 +16,16 @@ test("requires every Resend delivery setting", () => {
 	assert.equal(getQuizEmailReadiness({ EMAIL_PROVIDER: "resend", EMAIL_API_KEY: "key", RECRUIT_QUIZ_RECIPIENT_EMAIL: "admin@gmail.com", fromAddress: "quiz@mail.fitoa.net" }), true);
 	assert.equal(getQuizEmailReadiness({ EMAIL_PROVIDER: "resend", EMAIL_API_KEY: "", RECRUIT_QUIZ_RECIPIENT_EMAIL: "admin@gmail.com", fromAddress: "quiz@mail.fitoa.net" }), false);
 	assert.equal(getQuizEmailReadiness({ EMAIL_PROVIDER: "resend", EMAIL_API_KEY: "key", RECRUIT_QUIZ_RECIPIENT_EMAIL: "", fromAddress: "quiz@mail.fitoa.net" }), false);
+});
+
+test("sends the server-built copy only through the supplied sender", async () => {
+	let sent: { to: string; subject: string; html: string; text: string } | undefined;
+	const result = await sendQuizCopy({
+		to: "admin@example.com", user: { name: "Tom", email: "tom@example.com" }, results,
+		sentAt: new Date("2026-08-01T00:00:00Z"),
+		sender: { provider: "resend", async sendVerificationEmail() {}, async sendEmail(message) { sent = message; return { messageId: "message-1" }; } },
+	});
+	assert.equal(result.messageId, "message-1");
+	assert.equal(sent?.to, "admin@example.com");
+	assert.match(sent?.text || "", /actively sent/);
 });

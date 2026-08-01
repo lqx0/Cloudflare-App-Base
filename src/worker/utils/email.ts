@@ -6,6 +6,7 @@ import type { CloudflareEmailSendBinding, EmailProvider } from "../types/env";
 export type EmailSender = {
 	provider: EmailProvider;
 	sendVerificationEmail: (params: { to: string; subject: string; html: string }) => Promise<void>;
+	sendEmail: (params: { to: string; subject: string; html: string; text: string }) => Promise<{ messageId?: string }>;
 };
 
 type EmailEnv = {
@@ -41,17 +42,14 @@ function formatAddressHeader(name: string, email: string): string {
 	return `"${escapedName}" <${sanitizeHeaderValue(email)}>`;
 }
 
-function createHtmlEmailMessage(to: string, subject: string, html: string): EmailMessage {
+function createHtmlEmailMessage(to: string, subject: string, html: string, text?: string): EmailMessage {
 	const fromAddress = config.email.fromAddress;
 	const raw = [
 		`From: ${formatAddressHeader(config.appName, fromAddress)}`,
 		`To: ${sanitizeHeaderValue(to)}`,
 		`Subject: ${encodeHeaderValue(subject)}`,
 		"MIME-Version: 1.0",
-		"Content-Type: text/html; charset=UTF-8",
-		"Content-Transfer-Encoding: 8bit",
-		"",
-		html,
+		...(text ? ["Content-Type: multipart/alternative; boundary=adaptquiz", "", "--adaptquiz", "Content-Type: text/plain; charset=UTF-8", "", text, "--adaptquiz", "Content-Type: text/html; charset=UTF-8", "", html, "--adaptquiz--"] : ["Content-Type: text/html; charset=UTF-8", "Content-Transfer-Encoding: 8bit", "", html]),
 	].join("\r\n");
 
 	return new EmailMessage(fromAddress, to, raw);
@@ -70,6 +68,7 @@ function createCloudflareEmailSender(env: Pick<EmailEnv, "SEND_EMAIL">): EmailSe
 			const result = await env.SEND_EMAIL!.send(message);
 			console.log(`[EMAIL] Cloudflare email sent: messageId=${result.messageId}`);
 		},
+		async sendEmail({ to, subject, html, text }) { const result = await env.SEND_EMAIL!.send(createHtmlEmailMessage(to, subject, html, text)); return { messageId: result.messageId }; },
 	};
 }
 
@@ -96,6 +95,7 @@ function createResendEmailSender(env: Pick<EmailEnv, "EMAIL_API_KEY">): EmailSen
 				throw new Error(result.error.message || "Failed to send email via Resend");
 			}
 		},
+		async sendEmail({ to, subject, html, text }) { const result = await resend.emails.send({ from: fromAddress, to, subject, html, text }); if (result.error) throw new Error(result.error.message || "Failed to send email via Resend"); return { messageId: result.data?.id }; },
 	};
 }
 
