@@ -59,7 +59,7 @@
 - [x] 将 `lqixv@hotmail.com` 设置为远程管理员，录入三类题目，并完成登录、答题、提交、新一轮和主动发送副本的浏览器端到端验证。
 - [x] 确认真实答卷副本送达，并将邮件中的答题人标签修正为 `Quiz taker's answer`。
 - [x] 推送 `project/adapt-quiz`，并停用远程 `project/recruit-quiz` 分支。
-- [!] 将误部署的 `cloudflare-app-base` Worker 从版本 `bddedbcc-d2f8-422a-bbe6-cc4fcab8167c` 回滚到原版本 `bcd57414-5aee-4144-8c73-911ccffc73b1`；等待单独的破坏性远程操作授权。
+- [x] 将误部署的 `cloudflare-app-base` Worker 从版本 `bddedbcc-d2f8-422a-bbe6-cc4fcab8167c` 回滚到原版本 `bcd57414-5aee-4144-8c73-911ccffc73b1`，并确认 `adaptquiz` 未受影响。
 
 当前远程配置边界：
 

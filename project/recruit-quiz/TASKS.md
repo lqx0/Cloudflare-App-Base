@@ -59,7 +59,7 @@ Status: `[ ]` not started, `[-]` in progress, `[x]` completed, `[!]` blocked.
 - [x] Set `lqixv@hotmail.com` as the remote administrator, enter all three question types, and complete browser end-to-end verification of sign-in, answering, submission, new round, and actively sending a copy.
 - [x] Confirm delivery of a real quiz copy and correct the email's quiz-taker label to `Quiz taker's answer`.
 - [x] Push `project/adapt-quiz` and retire the remote `project/recruit-quiz` branch.
-- [!] Roll the accidentally deployed `cloudflare-app-base` Worker back from version `bddedbcc-d2f8-422a-bbe6-cc4fcab8167c` to its prior version `bcd57414-5aee-4144-8c73-911ccffc73b1`; awaiting separate authorization for this destructive remote operation.
+- [x] Roll the accidentally deployed `cloudflare-app-base` Worker back from version `bddedbcc-d2f8-422a-bbe6-cc4fcab8167c` to its prior version `bcd57414-5aee-4144-8c73-911ccffc73b1`, and confirm that `adaptquiz` remains unaffected.
 
 Current remote configuration boundaries:
 
