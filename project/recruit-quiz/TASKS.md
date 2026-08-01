@@ -10,8 +10,8 @@ Status: `[ ]` not started, `[-]` in progress, `[x]` completed, `[!]` blocked.
 - [x] Compare architectures and select a D1 question bank with React in-memory quiz state.
 - [x] Approve page, API, data, email, security, and testing design.
 - [x] Complete paired project documents and the formal design specification.
-- [ ] Obtain user approval of the written specification.
-- [ ] Write and approve the TDD implementation plan.
+- [x] Obtain user approval of the written specification.
+- [x] Write and approve the TDD implementation plan.
 
 ## Current-version implementation
 
