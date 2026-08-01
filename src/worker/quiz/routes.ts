@@ -1,7 +1,7 @@
 import { Hono } from "hono";
 import type { AppBindings } from "../types/context";
 import { validateRoundAnswers } from "./schema";
-import { createRound, getBankStatus, submitRound } from "./service";
+import { createRound, getBankStatus, QuizRoundConflictError, submitRound } from "./service";
 import type { QuestionRepository } from "./types";
 import { config } from "../../config";
 import { getQuizEmailReadiness, sendQuizCopy } from "./email";
@@ -30,13 +30,27 @@ export function createQuizRoutes(resolveRepository: (bindings: AppBindings["Bind
 	});
 	routes.post("/send-copy", async (c) => {
 		if (!getQuizEmailReadiness({ ...c.env, fromAddress: config.email.fromAddress })) return c.json({ error: "Email delivery is not configured in this prototype." }, 503);
+		let input;
 		try {
-			const results = await createQuizHandlers(resolveRepository(c.env)).submit(await c.req.json());
+			input = validateRoundAnswers(await c.req.json());
+		} catch (error) {
+			return c.json({ error: error instanceof Error ? error.message : "Invalid answers" }, 400);
+		}
+		let results;
+		try {
+			results = await submitRound(resolveRepository(c.env), input);
+		} catch (error) {
+			if (error instanceof QuizRoundConflictError) return c.json({ error: error.message }, 409);
+			throw error;
+		}
+		try {
 			const user = c.get("user")!;
 			const { createEmailSender } = await import("../utils/email");
 			const sent = await sendQuizCopy({ to: c.env.RECRUIT_QUIZ_RECIPIENT_EMAIL!, user, results, sentAt: new Date(), sender: createEmailSender(c.env) });
 			return c.json({ sent: true, messageId: sent.messageId });
-		} catch { return c.json({ error: "The copy could not be sent. Please try again." }, 502); }
+		} catch {
+			return c.json({ error: "The copy could not be sent. Please try again." }, 502);
+		}
 	});
 	return routes;
 }
