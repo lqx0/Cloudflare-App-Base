@@ -3,10 +3,10 @@ import { readFileSync } from "node:fs";
 import { pathToFileURL } from "node:url";
 import { resolve } from "node:path";
 
-const PREVIEW_WORKER_NAME = "adaptquiz-preview";
-const PREVIEW_D1_NAME = "adaptquiz-preview";
+const PREVIEW_WORKER_NAME = "adaptquiz";
+const PREVIEW_D1_NAME = "adaptquiz";
 const UUID_PATTERN = /^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/i;
-const WORKERS_DEV_URL_PATTERN = /^https:\/\/adaptquiz-preview\.[a-z0-9-]+\.workers\.dev$/i;
+const WORKERS_DEV_URL_PATTERN = /^https:\/\/adaptquiz\.[a-z0-9-]+\.workers\.dev$/i;
 
 function readTomlString(section: string, key: string, content: string): string | undefined {
 	const escapedSection = section.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
@@ -25,9 +25,9 @@ export function validatePreviewRemoteConfig(content: string): void {
 
 	if (workerName !== PREVIEW_WORKER_NAME) failures.push(`Worker name must be ${PREVIEW_WORKER_NAME}.`);
 	if (databaseName !== PREVIEW_D1_NAME) failures.push(`D1 database_name must be ${PREVIEW_D1_NAME}.`);
-	if (!databaseId || !UUID_PATTERN.test(databaseId)) failures.push("D1 database_id must be the real UUID returned when the independent Preview D1 is created.");
-	if (!appBaseUrl || !WORKERS_DEV_URL_PATTERN.test(appBaseUrl)) failures.push("APP_BASE_URL must be the real adaptquiz-preview workers.dev URL.");
-	if (emailProvider !== "resend") failures.push("EMAIL_PROVIDER must be resend for aDaptQuiz Preview.");
+	if (!databaseId || !UUID_PATTERN.test(databaseId)) failures.push("D1 database_id must be the real UUID returned when the remote test D1 is created.");
+	if (!appBaseUrl || !WORKERS_DEV_URL_PATTERN.test(appBaseUrl)) failures.push("APP_BASE_URL must be the real adaptquiz workers.dev URL.");
+	if (emailProvider !== "resend") failures.push("EMAIL_PROVIDER must be resend for the aDaptQuiz remote test environment.");
 
 	if (failures.length > 0) {
 		throw new Error(`Preview remote configuration is not ready:\n- ${failures.join("\n- ")}\nNo remote action was started.`);

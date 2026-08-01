@@ -6,16 +6,16 @@ import { validatePreviewRemoteConfig } from "../bin/preview-remote-config.ts";
 
 const readyPreviewConfig = `
 [env.preview]
-name = "adaptquiz-preview"
+name = "adaptquiz"
 
 [env.preview.vars]
 ENVIRONMENT = "preview"
 EMAIL_PROVIDER = "resend"
-APP_BASE_URL = "https://adaptquiz-preview.example-account.workers.dev"
+APP_BASE_URL = "https://adaptquiz.example-account.workers.dev"
 
 [[env.preview.d1_databases]]
 binding = "DB"
-database_name = "adaptquiz-preview"
+database_name = "adaptquiz"
 database_id = "123e4567-e89b-42d3-a456-426614174000"
 `;
 
@@ -27,7 +27,7 @@ test("blocks Preview before any remote action when project resource values are u
 	const unresolved = readyPreviewConfig
 		.replace("123e4567-e89b-42d3-a456-426614174000", "REPLACE_WITH_ADAPTQUIZ_PREVIEW_D1_DATABASE_ID")
 		.replace(
-			"https://adaptquiz-preview.example-account.workers.dev",
+			"https://adaptquiz.example-account.workers.dev",
 			"REPLACE_WITH_ADAPTQUIZ_PREVIEW_WORKERS_DEV_URL",
 		);
 
@@ -37,19 +37,15 @@ test("blocks Preview before any remote action when project resource values are u
 	);
 });
 
-test("the checked-in Preview configuration is intentionally blocked until real resources exist", async () => {
+test("the checked-in remote test configuration uses the created adaptquiz resource", async () => {
 	const checkedInConfig = await readFile("wrangler.toml", "utf8");
-
-	assert.throws(
-		() => validatePreviewRemoteConfig(checkedInConfig),
-		/Preview remote configuration is not ready:[\s\S]*database_id[\s\S]*APP_BASE_URL[\s\S]*No remote action was started/,
-	);
+	assert.doesNotThrow(() => validatePreviewRemoteConfig(checkedInConfig));
 });
 
 test("rejects shared base Worker and D1 resources", () => {
 	const shared = readyPreviewConfig
-		.replace('name = "adaptquiz-preview"', 'name = "cloudflare-app-base"')
-		.replace('database_name = "adaptquiz-preview"', 'database_name = "cloudflare-app-base"');
+		.replace('name = "adaptquiz"', 'name = "cloudflare-app-base"')
+		.replace('database_name = "adaptquiz"', 'database_name = "cloudflare-app-base"');
 
 	assert.throws(
 		() => validatePreviewRemoteConfig(shared),

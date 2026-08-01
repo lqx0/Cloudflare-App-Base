@@ -17,14 +17,14 @@ test("preview configuration targets isolated aDaptQuiz resources", async () => {
 		readFile("vite.config.ts", "utf8"),
 	]);
 
-	assert.match(wranglerConfig, /\[env\.preview\][\s\S]*name\s*=\s*"adaptquiz-preview"/);
+	assert.match(wranglerConfig, /\[env\.preview\][\s\S]*name\s*=\s*"adaptquiz"/);
 	assert.match(
 		wranglerConfig,
 		/\[env\.preview\.vars\][\s\S]*EMAIL_PROVIDER\s*=\s*"resend"/,
 	);
 	assert.match(
 		wranglerConfig,
-		/\[\[env\.preview\.d1_databases\]\][\s\S]*database_name\s*=\s*"adaptquiz-preview"/,
+		/\[\[env\.preview\.d1_databases\]\][\s\S]*database_name\s*=\s*"adaptquiz"/,
 	);
 	assert.doesNotMatch(wranglerConfig, /cloudflare-ankit-preview/);
 	assert.match(viteConfig, /mode === "preview"[\s\S]*?cfg\.name = baseName;/);

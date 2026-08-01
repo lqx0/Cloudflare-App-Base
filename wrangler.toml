@@ -29,19 +29,19 @@ database_name = "cloudflare-app-base"
 database_id = "local"
 
 [env.preview]
-name = "adaptquiz-preview"
+name = "adaptquiz"
 workers_dev = true
 [env.preview.vars]
 ENVIRONMENT = "preview"
 EMAIL_PROVIDER = "resend"
 AUTH_EMAILS_LOCAL_ENABLED = "false"
-APP_BASE_URL = "REPLACE_WITH_ADAPTQUIZ_PREVIEW_WORKERS_DEV_URL"
+APP_BASE_URL = "https://adaptquiz.lqixv.workers.dev"
 AUTH_EMAILS_ENABLED = "false"
 
 [[env.preview.d1_databases]]
 binding = "DB"
-database_name = "adaptquiz-preview"
-database_id = "REPLACE_WITH_ADAPTQUIZ_PREVIEW_D1_DATABASE_ID"
+database_name = "adaptquiz"
+database_id = "62af6701-0b32-48b8-a176-c8112de967f7"
 
 [[env.preview.send_email]]
 name = "SEND_EMAIL"
