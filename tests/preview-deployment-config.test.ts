@@ -11,20 +11,20 @@ test("preview deployment builds with the Cloudflare preview environment and depl
 	assert.match(packageJson.scripts["deploy:preview"], /wrangler deploy --env preview/);
 });
 
-test("preview configuration targets the standalone Cloudflare App Base resources", async () => {
+test("preview configuration targets isolated aDaptQuiz resources", async () => {
 	const [wranglerConfig, viteConfig] = await Promise.all([
 		readFile("wrangler.toml", "utf8"),
 		readFile("vite.config.ts", "utf8"),
 	]);
 
-	assert.match(wranglerConfig, /\[env\.preview\][\s\S]*name\s*=\s*"cloudflare-app-base"/);
+	assert.match(wranglerConfig, /\[env\.preview\][\s\S]*name\s*=\s*"adaptquiz-preview"/);
 	assert.match(
 		wranglerConfig,
-		/\[env\.preview\.vars\][\s\S]*APP_BASE_URL\s*=\s*"https:\/\/cloudflare-app-base\.lqixv\.workers\.dev"/,
+		/\[env\.preview\.vars\][\s\S]*EMAIL_PROVIDER\s*=\s*"resend"/,
 	);
 	assert.match(
 		wranglerConfig,
-		/\[\[env\.preview\.d1_databases\]\][\s\S]*database_name\s*=\s*"cloudflare-app-base"/,
+		/\[\[env\.preview\.d1_databases\]\][\s\S]*database_name\s*=\s*"adaptquiz-preview"/,
 	);
 	assert.doesNotMatch(wranglerConfig, /cloudflare-ankit-preview/);
 	assert.match(viteConfig, /mode === "preview"[\s\S]*?cfg\.name = baseName;/);

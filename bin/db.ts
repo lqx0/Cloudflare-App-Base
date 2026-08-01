@@ -12,6 +12,7 @@ import {
 } from "node:fs";
 import { basename, resolve } from "node:path";
 import { createInterface } from "node:readline";
+import { assertPreviewRemoteConfigReady } from "./preview-remote-config.ts";
 
 type DbEnvironment = "local" | "preview" | "production";
 
@@ -61,6 +62,9 @@ function getRemoteFlags(env: DbEnvironment): string[] {
 }
 
 function runWrangler(args: string[]): void {
+	if (args.includes("preview")) {
+		assertPreviewRemoteConfigReady();
+	}
 	const wranglerCliPath = resolve(process.cwd(), "node_modules", "wrangler", "bin", "wrangler.js");
 	execFileSync(process.execPath, [wranglerCliPath, ...args], {
 		stdio: "inherit",

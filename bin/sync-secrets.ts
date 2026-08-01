@@ -18,6 +18,7 @@ import { spawnSync } from "child_process";
 import { createHash } from "crypto";
 import { existsSync, readFileSync, writeFileSync, mkdirSync } from "fs";
 import { join } from "path";
+import { assertPreviewRemoteConfigReady } from "./preview-remote-config.ts";
 
 const HASH_DIR = ".wrangler/secrets";
 const WRANGLER_CLI_PATH = join(process.cwd(), "node_modules", "wrangler", "bin", "wrangler.js");
@@ -25,6 +26,10 @@ const NON_SECRET_KEYS = new Set([
 	"ENVIRONMENT",
 	"EMAIL_PROVIDER",
 	"AUTH_EMAILS_LOCAL_ENABLED",
+	"APP_BASE_URL",
+	"CLI_API_URL",
+	"CLI_API_URL_PREVIEW",
+	"CLI_API_URL_PRODUCTION",
 ]);
 // Cloudflare aggressively rate-limits `wrangler secret put`. A short pause
 // between successive puts noticeably reduces 429s on bursts of >5 secrets.
@@ -117,6 +122,9 @@ async function main() {
 	}
 
 	const env = args[0];
+	if (env === "preview") {
+		assertPreviewRemoteConfigReady();
+	}
 	const envFile = getEnvFilePath(env);
 
 	if (!existsSync(envFile)) {

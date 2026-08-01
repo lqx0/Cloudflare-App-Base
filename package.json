@@ -28,7 +28,7 @@
     "check": "tsc -b && vite build && wrangler deploy --dry-run",
     "sync-secrets": "tsx bin/sync-secrets.ts",
     "deploy": "wrangler deploy",
-    "deploy:preview": "tsx bin/sync-secrets.ts preview && npm run build:preview && wrangler deploy --env preview",
+		"deploy:preview": "tsx bin/preview-remote-config.ts && tsx bin/sync-secrets.ts preview && npm run build:preview && wrangler deploy --env preview",
     "deploy:production": "tsx bin/sync-secrets.ts production && npm run build:production && wrangler deploy --env production",
     "tail:preview": "wrangler tail --env preview",
     "tail:production": "wrangler tail --env production",
