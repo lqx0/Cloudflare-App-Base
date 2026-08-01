@@ -90,4 +90,3 @@ This refinement does not add question editing, deletion, deactivation, quiz hist
 - Run all aDaptQuiz focused tests and the complete test suite.
 - Run ESLint, App and Worker TypeScript checks, production build, and `git diff --check`.
 - Inspect the running local pages at desktop and narrow viewport widths before completion.
-
