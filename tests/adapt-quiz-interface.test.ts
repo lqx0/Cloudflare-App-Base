@@ -18,8 +18,29 @@ test("Quiz answer choices are full-row native radio controls", async () => {
 });
 
 test("Quiz results separate user and reference answers", async () => {
-  const results = await readFile("src/react-app/features/quiz/components/QuizResults.tsx", "utf8");
-  assert.match(results, /bg-muted\/40/);
-  assert.match(results, /Your answer/);
-  assert.match(results, /Reference answer \/ Evaluation guidance/);
+	const results = await readFile("src/react-app/features/quiz/components/QuizResults.tsx", "utf8");
+	assert.match(results, /bg-muted\/40/);
+	assert.match(results, /Your answer/);
+	assert.match(results, /Reference answer \/ Evaluation guidance/);
+});
+
+test("Question bank uses a responsive creation and list workspace", async () => {
+	const page = await readFile("src/react-app/pages/admin/QuestionBankPage.tsx", "utf8");
+	assert.match(page, /lg:grid-cols-\[minmax\(0,0\.85fr\)_minmax\(0,1\.15fr\)\]/);
+	assert.match(page, /Create question/);
+});
+
+test("Question form exposes three accessible type selectors", async () => {
+	const selector = await readFile("src/react-app/features/admin/components/QuestionTypeSelector.tsx", "utf8");
+	assert.match(selector, /role="radiogroup"/);
+	assert.match(selector, /aria-checked/);
+	assert.match(selector, /Multiple choice/);
+	assert.match(selector, /Written response/);
+});
+
+test("Question list shows count and an explicit empty state", async () => {
+	const list = await readFile("src/react-app/features/admin/components/QuestionList.tsx", "utf8");
+	assert.match(list, /questions\.length/);
+	assert.match(list, /No questions yet/);
+	assert.match(list, /Add your first question/);
 });
