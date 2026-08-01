@@ -15,31 +15,31 @@ Status: `[ ]` not started, `[-]` in progress, `[x]` completed, `[!]` blocked.
 
 ## Current-version implementation
 
-- [ ] Define aDaptQuiz identity, job content, and production notices with failing tests.
-- [ ] Add the local `quiz_questions` migration and Kysely type.
-- [ ] Implement question schemas and length validation.
-- [ ] Implement server-side administrator-role middleware.
-- [ ] Implement administrator question creation and list APIs.
-- [ ] Implement the administrator question-bank page and production notice.
-- [ ] Implement question-bank status and three-type random-round API.
-- [ ] Implement the English quiz introduction and answering page.
-- [ ] Implement immediate submission, authoritative answers, and free-text guidance.
-- [ ] Implement a genuinely functional new round.
-- [ ] Extend the email adapter for generic HTML and plain-text sending.
-- [ ] Implement the Resend quiz-copy template and send API.
-- [ ] Implement send confirmation, success, failure, and unavailable states.
-- [ ] Implement the administrator mailbox notice page.
-- [ ] Update Privacy, navigation, SEO, and conditional authentication presentation.
+- [x] Define aDaptQuiz identity, job content, and production notices with failing tests.
+- [x] Add the local `quiz_questions` migration and Kysely type.
+- [x] Implement question schemas and length validation.
+- [x] Implement server-side administrator-role middleware.
+- [x] Implement administrator question creation and list APIs.
+- [x] Implement the administrator question-bank page and production notice.
+- [x] Implement question-bank status and three-type random-round API.
+- [x] Implement the English quiz introduction and answering page.
+- [x] Implement immediate submission, authoritative answers, and free-text guidance.
+- [x] Implement a genuinely functional new round.
+- [x] Extend the email adapter for generic HTML and plain-text sending.
+- [x] Implement the Resend quiz-copy template and send API.
+- [x] Implement send confirmation, success, failure, and unavailable states.
+- [x] Implement the administrator mailbox notice page.
+- [x] Update Privacy, navigation, SEO, and conditional authentication presentation.
 
 ## Verification
 
-- [ ] Run every focused test.
-- [ ] Run the full TypeScript test suite.
-- [ ] Run lint.
-- [ ] Run TypeScript type checking.
-- [ ] Run the build.
-- [ ] Run `git diff --check` and review the Git diff.
-- [ ] Report unperformed remote operations and the real-email verification boundary.
+- [x] Run every focused test.
+- [x] Run the full TypeScript test suite.
+- [x] Run lint.
+- [x] Run TypeScript type checking.
+- [x] Run the build.
+- [x] Run `git diff --check` and review the Git diff.
+- [x] Report unperformed remote operations and the real-email verification boundary.
 
 ## Production-version notices, not implemented now
 

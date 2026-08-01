@@ -4,7 +4,6 @@ import { validateRoundAnswers } from "./schema";
 import { createRound, getBankStatus, submitRound } from "./service";
 import type { QuestionRepository } from "./types";
 import { config } from "../../config";
-import { createEmailSender } from "../utils/email";
 import { getQuizEmailReadiness, sendQuizCopy } from "./email";
 
 export function createQuizHandlers(repository: QuestionRepository) {
@@ -34,6 +33,7 @@ export function createQuizRoutes(resolveRepository: (bindings: AppBindings["Bind
 		try {
 			const results = await createQuizHandlers(resolveRepository(c.env)).submit(await c.req.json());
 			const user = c.get("user")!;
+			const { createEmailSender } = await import("../utils/email");
 			const sent = await sendQuizCopy({ to: c.env.RECRUIT_QUIZ_RECIPIENT_EMAIL!, user, results, sentAt: new Date(), sender: createEmailSender(c.env) });
 			return c.json({ sent: true, messageId: sent.messageId });
 		} catch { return c.json({ error: "The copy could not be sent. Please try again." }, 502); }
