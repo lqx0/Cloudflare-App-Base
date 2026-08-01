@@ -45,7 +45,7 @@ export function QuizQuestionCard({ question, index, value, onChange, disabled }:
 									checked={value === option}
 									onChange={() => onChange(option)}
 								/>
-								<label htmlFor={optionId} className="flex cursor-pointer items-center justify-between rounded-xl border px-4 py-3 text-sm transition-colors hover:bg-muted/40 peer-checked:border-primary peer-checked:bg-primary/5">
+								<label htmlFor={optionId} className="flex cursor-pointer items-center justify-between rounded-xl border px-4 py-3 text-sm transition-colors hover:bg-muted/40 peer-checked:border-primary peer-checked:bg-primary/5 peer-focus-visible:ring-2 peer-focus-visible:ring-primary peer-focus-visible:ring-offset-2">
 									{label}
 								</label>
 							</div>

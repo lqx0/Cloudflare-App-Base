@@ -13,6 +13,7 @@ test("Quiz answer choices are full-row native radio controls", async () => {
   const card = await readFile("src/react-app/features/quiz/components/QuizQuestionCard.tsx", "utf8");
   assert.match(card, /peer\/sr-only/);
   assert.match(card, /peer-checked:border-primary/);
+  assert.match(card, /peer-focus-visible:ring-2 peer-focus-visible:ring-primary peer-focus-visible:ring-offset-2/);
   assert.match(card, /Question \{String\(index \+ 1\)/);
 });
 
