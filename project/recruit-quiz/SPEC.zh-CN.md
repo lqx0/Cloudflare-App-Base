@@ -207,6 +207,7 @@ Privacy 页面必须同步说明这些边界。
 - 所有管理员接口都有服务端角色检查。
 - 实施必须先写失败测试，再写最小实现，最终通过完整测试、Lint、类型检查和 Build。
 - 仓库的 Preview 命令路径指向唯一的非正式测试资源 `adaptquiz` Worker 与 D1；前置门禁会在远程动作前拒绝无效 ID、无效 URL 和共享基础资源。
+- 非正式测试应用以 `https://quiz.fitoa.net` 为规范 URL；Google OAuth 仅在服务端两项凭据完整时启用，并在 consent screen 的 Testing 状态下限定测试用户。
 
 ## 13. 已批准的英文页面文案
 

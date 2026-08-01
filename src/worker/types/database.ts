@@ -31,7 +31,9 @@ export interface Database {
     providerAccountId: string | null;
     refreshToken: string | null;
     accessToken: string | null;
+    idToken: string | null;
     accessTokenExpiresAt: number | null;
+    refreshTokenExpiresAt: number | null;
     scope: string | null;
     password: string | null;
     createdAt: number;

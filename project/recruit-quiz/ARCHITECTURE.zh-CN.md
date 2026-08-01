@@ -108,7 +108,7 @@ D1 只新增 `quiz_questions`：
 
 ## 10. 环境边界
 
-本地实现和测试不得默认连接远程资源。GoDaddy DNS、Resend、远程 Secret 和部署需要后续独立授权。不得修改 legacy Worker/D1。
+本地实现和测试不得默认连接远程资源。DNS、Resend、远程 Secret 和部署需要独立授权。不得修改 legacy Worker/D1。
 
 唯一远程环境是非正式上线的测试环境。仓库脚本仍使用 `preview` 作为命令标签，但不会另建 Production 资源：
 
@@ -116,6 +116,11 @@ D1 只新增 `quiz_questions`：
 - D1 名称：`adaptquiz`；
 - 邮件 Provider：`resend`；
 - D1 ID：`62af6701-0b32-48b8-a176-c8112de967f7`；
-- 应用 URL：`https://adaptquiz.tom0.workers.dev`。
+- 应用 URL：`https://quiz.fitoa.net`；
+- Workers.dev 诊断入口：`https://adaptquiz.tom0.workers.dev`。
 
-`bin/preview-remote-config.ts` 继续作为 fail-closed 前置门禁。D1 ID 不是实际 UUID、URL 不是 `adaptquiz.<account>.workers.dev`，或配置重新引用共享基础资源时，远程测试部署、Secret 同步和 D1 命令都会在调用 Wrangler 前停止。仓库中的 Production 占位配置明确不使用，Production 命令不在本项目范围内。
+`fitoa.net` 的权威 DNS 托管于 Cloudflare，`quiz.fitoa.net` 通过 Worker custom domain 路由到 `adaptquiz`。Google OAuth 使用 Web Client，允许来源为应用 URL，回调为 `/api/auth/callback/google`；仅在 Client ID 与 Client Secret 都存在时向客户端公开入口。OAuth consent screen 保持 Testing，只允许明确加入的测试用户；Secret 仅存于 Cloudflare，不写入仓库或文档。Preview 邮箱认证保持关闭。
+
+Better Auth 的 `accounts` 表包含 Google OAuth 写入的 `idToken` 和 `refreshTokenExpiresAt` 可空字段；邮箱密码账户可以保持为空。远程迁移必须先备份 D1。
+
+`bin/preview-remote-config.ts` 继续作为 fail-closed 前置门禁。D1 ID 不是实际 UUID、应用 URL 或 custom-domain 路由不是 `https://quiz.fitoa.net`，或配置重新引用共享基础资源时，远程测试部署、Secret 同步和 D1 命令都会在调用 Wrangler 前停止。仓库中的 Production 占位配置明确不使用，Production 命令不在本项目范围内。

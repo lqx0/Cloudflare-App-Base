@@ -108,7 +108,7 @@ The status endpoint reports delivery available only when all configuration is us
 
 ## 10. Environment boundary
 
-Local implementation and tests do not connect to remote resources by default. GoDaddy DNS, Resend, remote secrets, and deployment require separate later authorization. Do not modify legacy Workers or D1 databases.
+Local implementation and tests do not connect to remote resources by default. DNS, Resend, remote secrets, and deployment require separate authorization. Do not modify legacy Workers or D1 databases.
 
 The only remote environment is a non-production test environment. Repository scripts continue to call it `preview`, but no separate Production resource will be created:
 
@@ -116,6 +116,11 @@ The only remote environment is a non-production test environment. Repository scr
 - D1 name: `adaptquiz`;
 - email provider: `resend`;
 - D1 ID: `62af6701-0b32-48b8-a176-c8112de967f7`;
-- application URL: `https://adaptquiz.tom0.workers.dev`.
+- application URL: `https://quiz.fitoa.net`;
+- Workers.dev diagnostic endpoint: `https://adaptquiz.tom0.workers.dev`.
 
-`bin/preview-remote-config.ts` remains a fail-closed preflight. Remote-test deployment, secret synchronization, and D1 commands stop before invoking Wrangler when the D1 ID is not a real UUID, when the URL is not the `adaptquiz.<account>.workers.dev` URL, or when shared base resource names reappear. The checked-in Production placeholders are intentionally unused; Production commands remain outside the project scope.
+Cloudflare hosts the authoritative DNS for `fitoa.net`, and a Worker custom-domain route maps `quiz.fitoa.net` to `adaptquiz`. Google OAuth uses a Web Client with the application URL as its allowed origin and `/api/auth/callback/google` as its callback. The client exposes the entry point only when both the Client ID and Client Secret exist. The OAuth consent screen remains in Testing and is limited to explicitly added test users. Secrets live only in Cloudflare and are never written to the repository or documentation. Preview email authentication remains disabled.
+
+Better Auth's `accounts` table includes nullable `idToken` and `refreshTokenExpiresAt` fields written by Google OAuth; email/password accounts may leave them empty. Remote migrations require a D1 backup first.
+
+`bin/preview-remote-config.ts` remains a fail-closed preflight. Remote-test deployment, secret synchronization, and D1 commands stop before invoking Wrangler when the D1 ID is not a real UUID, when the application URL or custom-domain route is not `https://quiz.fitoa.net`, or when shared base resource names reappear. The checked-in Production placeholders are intentionally unused; Production commands remain outside the project scope.

@@ -24,7 +24,11 @@ test("preview configuration targets isolated aDaptQuiz resources", async () => {
 	);
 	assert.match(
 		wranglerConfig,
-		/\[env\.preview\.vars\][\s\S]*APP_BASE_URL\s*=\s*"https:\/\/adaptquiz\.tom0\.workers\.dev"/,
+		/\[env\.preview\.vars\][\s\S]*APP_BASE_URL\s*=\s*"https:\/\/quiz\.fitoa\.net"/,
+	);
+	assert.match(
+		wranglerConfig,
+		/\[env\.preview\][\s\S]*routes\s*=\s*\[[\s\S]*pattern\s*=\s*"quiz\.fitoa\.net"[\s\S]*custom_domain\s*=\s*true/,
 	);
 	assert.match(
 		wranglerConfig,

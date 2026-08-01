@@ -55,14 +55,19 @@ Status: `[ ]` not started, `[-]` in progress, `[x]` completed, `[!]` blocked.
 - [x] Create or configure a Resend account and a send-only restricted API key.
 - [x] Configure Resend DNS for `mail.fitoa.net` and verify the domain mail path through successful delivery from `quiz@mail.fitoa.net`.
 - [x] Configure the target environment's sender, `daxuyouran@gmail.com` recipient, and required secrets.
-- [x] Deploy the single `adaptquiz` test Worker to `https://adaptquiz.tom0.workers.dev`.
+- [x] Deploy the single `adaptquiz` test Worker and retain `https://adaptquiz.tom0.workers.dev` as its diagnostic endpoint.
 - [x] Set `lqixv@hotmail.com` as the remote administrator, enter all three question types, and complete browser end-to-end verification of sign-in, answering, submission, new round, and actively sending a copy.
 - [x] Confirm delivery of a real quiz copy and correct the email's quiz-taker label to `Quiz taker's answer`.
 - [x] Push `project/adapt-quiz` and retire the remote `project/recruit-quiz` branch.
 - [x] Roll the accidentally deployed `cloudflare-app-base` Worker back from version `bddedbcc-d2f8-422a-bbe6-cc4fcab8167c` to its prior version `bcd57414-5aee-4144-8c73-911ccffc73b1`, and confirm that `adaptquiz` remains unaffected.
+- [x] Migrate authoritative DNS for `fitoa.net` to Cloudflare, preserve all existing business DNS records, and bind `quiz.fitoa.net` to the `adaptquiz` custom domain.
+- [x] Create a Google Web OAuth Client for the `https://quiz.fitoa.net` origin and `/api/auth/callback/google`, keep the consent screen in Testing, and add the designated test user.
+- [x] Configure the Google Client ID/Secret as Cloudflare secrets on `adaptquiz` without storing their values in Git, deploy, and confirm the authentication capability endpoint enables Google only when both values are complete.
+- [x] Reproduce the missing OAuth token columns with a failing test, add nullable token fields after backing up D1, and verify first sign-in, sign-out, and repeat Google sign-in.
 
 Current remote configuration boundaries:
 
-- `.env.preview` uses `https://adaptquiz.tom0.workers.dev` for `APP_BASE_URL`/`CLI_API_URL_PREVIEW` and remains Git-ignored;
+- `.env.preview` uses `https://quiz.fitoa.net` for `APP_BASE_URL`/`CLI_API_URL_PREVIEW` and remains Git-ignored;
 - `EMAIL_API_KEY`, `RECRUIT_QUIZ_RECIPIENT_EMAIL`, `CLI_API_KEY`, and `BETTER_AUTH_SECRET` are synchronized to `adaptquiz`;
-- Google OAuth credentials remain unconfigured, and Preview authentication emails remain disabled.
+- `GOOGLE_CLIENT_ID` and `GOOGLE_CLIENT_SECRET` are configured as remote secrets, and OAuth remains limited to users on the Testing consent screen;
+- Preview email authentication and verification email delivery remain disabled.

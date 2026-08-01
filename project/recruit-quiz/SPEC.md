@@ -207,6 +207,7 @@ The Worker enforces administrator access using the current user ID and `users.ro
 - Every administrator endpoint has server-side role enforcement.
 - Implementation starts with failing tests and minimal code, then finishes with the full test suite, lint, type checking, and build.
 - The repository's Preview command path targets the single non-production `adaptquiz` Worker and D1; its preflight rejects invalid IDs, invalid URLs, and shared base resources before remote actions.
+- The non-production application uses `https://quiz.fitoa.net` as its canonical URL. Google OAuth is enabled only when both server-side credentials are complete and remains limited to consent-screen test users while the app is in Testing.
 
 ## 13. Approved English page copy
 

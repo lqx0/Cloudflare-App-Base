@@ -8,15 +8,14 @@ import { createEmailSender, type EmailSender } from "../utils/email";
 import { getVerificationEmailTemplate, getPasswordResetEmailTemplate } from "../utils/email-templates";
 import { config } from "../../config";
 import { getAuthBaseURL, type AuthEnvironment } from "./auth-base-url";
+import { isGoogleOAuthEnabled } from "../utils/google-oauth-config";
+
+export { isGoogleOAuthEnabled } from "../utils/google-oauth-config";
 
 type Environment = AuthEnvironment;
 
 function isEnabled(value?: string): boolean {
 	return value === "true" || value === "1";
-}
-
-export function isGoogleOAuthEnabled(env: { GOOGLE_CLIENT_ID?: string; GOOGLE_CLIENT_SECRET?: string }): boolean {
-	return Boolean(config.auth.enableGoogleAuth && env.GOOGLE_CLIENT_ID && env.GOOGLE_CLIENT_SECRET);
 }
 
 function shouldUseAuthEmails(

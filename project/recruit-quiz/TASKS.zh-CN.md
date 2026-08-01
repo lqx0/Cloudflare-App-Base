@@ -55,14 +55,19 @@
 - [x] 创建或配置 Resend 账户和仅发送权限的受限 API Key。
 - [x] 为 `mail.fitoa.net` 配置 Resend DNS，并以 `quiz@mail.fitoa.net` 成功投递验证域名邮件链路。
 - [x] 配置目标环境发件地址、`daxuyouran@gmail.com` 收件地址及所需 Secret。
-- [x] 部署唯一 `adaptquiz` 测试 Worker 到 `https://adaptquiz.tom0.workers.dev`。
+- [x] 部署唯一 `adaptquiz` 测试 Worker，并保留 `https://adaptquiz.tom0.workers.dev` 诊断入口。
 - [x] 将 `lqixv@hotmail.com` 设置为远程管理员，录入三类题目，并完成登录、答题、提交、新一轮和主动发送副本的浏览器端到端验证。
 - [x] 确认真实答卷副本送达，并将邮件中的答题人标签修正为 `Quiz taker's answer`。
 - [x] 推送 `project/adapt-quiz`，并停用远程 `project/recruit-quiz` 分支。
 - [x] 将误部署的 `cloudflare-app-base` Worker 从版本 `bddedbcc-d2f8-422a-bbe6-cc4fcab8167c` 回滚到原版本 `bcd57414-5aee-4144-8c73-911ccffc73b1`，并确认 `adaptquiz` 未受影响。
+- [x] 将 `fitoa.net` 的权威 DNS 迁移到 Cloudflare，完整保留既有业务 DNS 记录，并将 `quiz.fitoa.net` 绑定到 `adaptquiz` custom domain。
+- [x] 创建 Google Web OAuth Client，配置 `https://quiz.fitoa.net` 来源与 `/api/auth/callback/google` 回调，将 consent screen 保持为 Testing，并加入指定测试用户。
+- [x] 将 Google Client ID／Secret 作为 Cloudflare Secret 配置到 `adaptquiz`（值不写入仓库），部署并确认认证能力接口仅在两项凭据完整时返回启用。
+- [x] 以失败测试复现 Google account 写入缺少 token 列的问题，备份 D1 后新增可空 OAuth token 字段，并完成首次登录、登出和再次登录验证。
 
 当前远程配置边界：
 
-- `.env.preview` 使用 `https://adaptquiz.tom0.workers.dev` 作为 `APP_BASE_URL`／`CLI_API_URL_PREVIEW`，并保持 Git 忽略；
+- `.env.preview` 使用 `https://quiz.fitoa.net` 作为 `APP_BASE_URL`／`CLI_API_URL_PREVIEW`，并保持 Git 忽略；
 - `EMAIL_API_KEY`、`RECRUIT_QUIZ_RECIPIENT_EMAIL`、`CLI_API_KEY` 和 `BETTER_AUTH_SECRET` 已同步到 `adaptquiz`；
-- Google OAuth 凭据仍未配置，Preview 邮箱验证邮件仍保持关闭。
+- `GOOGLE_CLIENT_ID` 和 `GOOGLE_CLIENT_SECRET` 已配置为远程 Secret，OAuth 仅供 consent screen 中的测试用户使用；
+- Preview 邮箱认证与邮箱验证邮件仍保持关闭。
