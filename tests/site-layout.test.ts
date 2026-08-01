@@ -66,3 +66,13 @@ test("the homepage uses the same page heading wrapper as the informational pages
 		/export function PublicHome\(\) \{[\s\S]*?<Page title="Practice clearly\. Share only when you choose\.">/,
 	);
 });
+
+test("top-level content pages share the header and footer width boundary", async () => {
+	const pages = await readFile("src/react-app/pages/public/Pages.tsx", "utf8");
+	const quiz = await readFile("src/react-app/pages/QuizPage.tsx", "utf8");
+	const submissions = await readFile("src/react-app/pages/admin/AdminSubmissionsPage.tsx", "utf8");
+
+	for (const source of [pages, quiz, submissions]) {
+		assert.match(source, /mx-auto w-full max-w-6xl/);
+	}
+});

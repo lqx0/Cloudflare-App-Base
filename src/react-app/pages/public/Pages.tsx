@@ -10,7 +10,7 @@ import { jobDetails, productCopy } from "@/content/adapt-quiz";
 
 function Page({ title, children }: { title: string; children: ReactNode }) {
   return (
-    <section className="mx-auto max-w-4xl px-6 py-20">
+    <section className="mx-auto w-full max-w-6xl px-6 py-20">
       <h1 className="text-4xl font-bold tracking-tight">{title}</h1>
       <div className="mt-6 max-w-2xl space-y-4 text-muted-foreground">
         {children}

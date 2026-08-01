@@ -14,6 +14,13 @@ test("Quiz presents round context and answered progress", async () => {
   assert.match(page, /answered/);
 });
 
+test("Quiz aligns to the shared site boundary without a redundant outer card", async () => {
+	const page = await readFile("src/react-app/pages/QuizPage.tsx", "utf8");
+	assert.match(page, /mx-auto w-full max-w-6xl/);
+	assert.match(page, /max-w-4xl/);
+	assert.doesNotMatch(page, /rounded-2xl border bg-card p-6 shadow-sm/);
+});
+
 test("Quiz answer choices are full-row native radio controls", async () => {
   const card = await readFile("src/react-app/features/quiz/components/QuizQuestionCard.tsx", "utf8");
   assert.match(card, /peer\/sr-only/);

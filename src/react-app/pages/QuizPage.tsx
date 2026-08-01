@@ -66,14 +66,15 @@ export function QuizPage() {
 	}
 
 	return (
-		<main className="mx-auto max-w-3xl space-y-5 px-6 py-16">
-			<header className="space-y-2">
-				<p className="text-sm font-medium text-muted-foreground">Self-test</p>
-				<h1 className="text-4xl font-bold">Quiz</h1>
-				<p className="text-sm text-muted-foreground">3 questions</p>
-			</header>
-			{error && <p role="alert" className="rounded-xl border border-destructive/50 bg-destructive/5 px-4 py-3 text-sm text-destructive">{error}</p>}
-			<section className="rounded-2xl border bg-card p-6 shadow-sm">
+		<main className="mx-auto w-full max-w-6xl px-6 py-16">
+			<div className="max-w-4xl space-y-5">
+				<header className="space-y-2">
+					<p className="text-sm font-medium text-muted-foreground">Self-test</p>
+					<h1 className="text-4xl font-bold">Quiz</h1>
+					<p className="text-sm text-muted-foreground">3 questions</p>
+				</header>
+				{error && <p role="alert" className="rounded-xl border border-destructive/50 bg-destructive/5 px-4 py-3 text-sm text-destructive">{error}</p>}
+				<section>
 				{questions.length === 0 ? (
 					<QuizIntroduction onStart={() => void start()} disabled={busy || !status.ready} missing={status.missingTypes} />
 				) : (
@@ -82,7 +83,8 @@ export function QuizPage() {
 						{results && <div className="mt-6 flex flex-wrap items-start gap-3"><Button onClick={() => void start()} disabled={busy}>Start a new quiz</Button><SendQuizCopyDialog available={Boolean(status.emailAvailable)} sent={sent} busy={busy} onSend={send} /></div>}
 					</>
 				)}
-			</section>
+				</section>
+			</div>
 		</main>
 	);
 }
