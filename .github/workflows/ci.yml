@@ -2,9 +2,9 @@ name: CI
 
 on:
   push:
-    branches: [main]
+    branches: [legacy/cloudflare-ankit]
   pull_request:
-    branches: [main]
+    branches: [legacy/cloudflare-ankit]
 
 jobs:
   build-and-lint:
@@ -37,7 +37,7 @@ jobs:
 
   deploy-preview:
     needs: build-and-lint
-    if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+    if: github.event_name == 'push' && github.ref == 'refs/heads/legacy/cloudflare-ankit'
     runs-on: ubuntu-latest
     permissions:
       contents: read
@@ -62,4 +62,4 @@ jobs:
         run: npm run build:preview
 
       - name: Deploy Preview Worker
-        run: npx wrangler deploy --env preview
+        run: npx wrangler deploy --env preview --name cloudflare-ankit-preview
