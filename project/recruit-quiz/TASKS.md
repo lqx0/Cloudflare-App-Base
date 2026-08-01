@@ -39,7 +39,7 @@ Status: `[ ]` not started, `[-]` in progress, `[x]` completed, `[!]` blocked.
 - [x] Run TypeScript type checking.
 - [x] Run the build.
 - [x] Run `git diff --check` and review the Git diff.
-- [x] Report unperformed remote operations and the real-email verification boundary.
+- [x] Record local and remote verification results and the remaining unperformed boundaries.
 
 ## Production-version notices, not implemented now
 
@@ -52,14 +52,17 @@ Status: `[ ]` not started, `[-]` in progress, `[x]` completed, `[!]` blocked.
 
 - [x] Configure the single remote test target as `adaptquiz`, record its D1 ID, select Resend, and retain the fail-closed remote preflight.
 - [x] Create the remote `adaptquiz` D1 and apply all project migrations after taking a backup.
-- [ ] Create or configure a Resend account and restricted API key.
-- [ ] Add Resend DNS records for `mail.fitoa.net` in GoDaddy.
-- [ ] Configure the target environment's sender, recipient, and secrets.
-- [ ] Deploy the `adaptquiz` test Worker.
-- [ ] Verify real delivery with a test account.
+- [x] Create or configure a Resend account and a send-only restricted API key.
+- [x] Configure Resend DNS for `mail.fitoa.net` and verify the domain mail path through successful delivery from `quiz@mail.fitoa.net`.
+- [x] Configure the target environment's sender, `daxuyouran@gmail.com` recipient, and required secrets.
+- [x] Deploy the single `adaptquiz` test Worker to `https://adaptquiz.tom0.workers.dev`.
+- [x] Set `lqixv@hotmail.com` as the remote administrator, enter all three question types, and complete browser end-to-end verification of sign-in, answering, submission, new round, and actively sending a copy.
+- [x] Confirm delivery of a real quiz copy and correct the email's quiz-taker label to `Quiz taker's answer`.
 - [x] Push `project/adapt-quiz` and retire the remote `project/recruit-quiz` branch.
+- [!] Roll the accidentally deployed `cloudflare-app-base` Worker back from version `bddedbcc-d2f8-422a-bbe6-cc4fcab8167c` to its prior version `bcd57414-5aee-4144-8c73-911ccffc73b1`; awaiting separate authorization for this destructive remote operation.
 
-Values still requiring separate approval and provider configuration:
+Current remote configuration boundaries:
 
-- `.env.preview` `APP_BASE_URL`/`CLI_API_URL_PREVIEW` using `https://adaptquiz.tom0.workers.dev`;
-- Preview `EMAIL_API_KEY`, `RECRUIT_QUIZ_RECIPIENT_EMAIL`, `CLI_API_KEY`, and any OAuth credentials, only after their respective configuration is authorized.
+- `.env.preview` uses `https://adaptquiz.tom0.workers.dev` for `APP_BASE_URL`/`CLI_API_URL_PREVIEW` and remains Git-ignored;
+- `EMAIL_API_KEY`, `RECRUIT_QUIZ_RECIPIENT_EMAIL`, `CLI_API_KEY`, and `BETTER_AUTH_SECRET` are synchronized to `adaptquiz`;
+- Google OAuth credentials remain unconfigured, and Preview authentication emails remain disabled.

@@ -39,7 +39,7 @@
 - [x] 运行 TypeScript 类型检查。
 - [x] 运行 Build。
 - [x] 运行 `git diff --check` 并审查 Git 差异。
-- [x] 报告未执行的远程操作和真实邮件验证边界。
+- [x] 记录本地与远程验证结果及仍未执行的边界。
 
 ## 正式版本提示，不在当前版本实施
 
@@ -52,14 +52,17 @@
 
 - [x] 将唯一远程测试目标配置为 `adaptquiz`，记录其 D1 ID，选择 Resend，并保留 fail-closed 远程前置门禁。
 - [x] 创建远程 `adaptquiz` D1，并在备份后应用全部项目迁移。
-- [ ] 创建或配置 Resend 账户和受限 API Key。
-- [ ] 在 GoDaddy 为 `mail.fitoa.net` 添加 Resend DNS 记录。
-- [ ] 配置目标环境发件地址、收件地址和 Secret。
-- [ ] 部署 `adaptquiz` 测试 Worker。
-- [ ] 使用测试账号验证真实邮件。
+- [x] 创建或配置 Resend 账户和仅发送权限的受限 API Key。
+- [x] 为 `mail.fitoa.net` 配置 Resend DNS，并以 `quiz@mail.fitoa.net` 成功投递验证域名邮件链路。
+- [x] 配置目标环境发件地址、`daxuyouran@gmail.com` 收件地址及所需 Secret。
+- [x] 部署唯一 `adaptquiz` 测试 Worker 到 `https://adaptquiz.tom0.workers.dev`。
+- [x] 将 `lqixv@hotmail.com` 设置为远程管理员，录入三类题目，并完成登录、答题、提交、新一轮和主动发送副本的浏览器端到端验证。
+- [x] 确认真实答卷副本送达，并将邮件中的答题人标签修正为 `Quiz taker's answer`。
 - [x] 推送 `project/adapt-quiz`，并停用远程 `project/recruit-quiz` 分支。
+- [!] 将误部署的 `cloudflare-app-base` Worker 从版本 `bddedbcc-d2f8-422a-bbe6-cc4fcab8167c` 回滚到原版本 `bcd57414-5aee-4144-8c73-911ccffc73b1`；等待单独的破坏性远程操作授权。
 
-仍需另行审批和配置的字段：
+当前远程配置边界：
 
-- 在 `.env.preview` 中使用 `https://adaptquiz.tom0.workers.dev` 填写 `APP_BASE_URL`／`CLI_API_URL_PREVIEW`；
-- 只有对应配置获得授权后，才能填写 Preview `EMAIL_API_KEY`、`RECRUIT_QUIZ_RECIPIENT_EMAIL`、`CLI_API_KEY` 和任何 OAuth 凭据。
+- `.env.preview` 使用 `https://adaptquiz.tom0.workers.dev` 作为 `APP_BASE_URL`／`CLI_API_URL_PREVIEW`，并保持 Git 忽略；
+- `EMAIL_API_KEY`、`RECRUIT_QUIZ_RECIPIENT_EMAIL`、`CLI_API_KEY` 和 `BETTER_AUTH_SECRET` 已同步到 `adaptquiz`；
+- Google OAuth 凭据仍未配置，Preview 邮箱验证邮件仍保持关闭。
