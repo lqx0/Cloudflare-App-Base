@@ -2,6 +2,14 @@
 
 Cloudflare-App-Base is a reusable application foundation derived from a Cloudflare full-stack starter. It preserves the shared authentication, database, email, environment, CLI, testing, and deployment-readiness capabilities needed by future projects.
 
+## Featured Demo — aDaptQuiz
+
+aDaptQuiz is a deployed full-stack quiz prototype built from this foundation. It demonstrates authentication, role-based administration, Cloudflare Workers and D1 integration, quiz workflows, and email delivery.
+
+**Live Demo:** https://quiz.fitoa.net
+
+**Source:** [project/adapt-quiz](../../tree/project/adapt-quiz)
+
 See [VISION.md](VISION.md) for the purpose, vision, and branch policy.
 
 ## Technology foundation
